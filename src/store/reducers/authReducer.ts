@@ -4,23 +4,25 @@ const initialState: AuthState = {
   user: null,
   loading: false,
   error: null,
-  isAuth: false
+  isAuth: false,
+  isSignup: false,
+  message: ''
 };
 
 export const authReducer = (state = initialState, action: AuthActions): AuthState => {
   switch (action.type) {
   case AuthActionTypes.AUTH_LOGIN:
-    return {loading: true, error: null, user: null, isAuth: false};
+    return {loading: true};
   case AuthActionTypes.AUTH_SUCCESS:
-    return {loading: false, error: null, user: action.payload, isAuth: true};
+    return {loading: false, user: action.payload, isAuth: true};
   case AuthActionTypes.AUTH_ERROR:
-    return {loading: false, error: action.payload, user: null, isAuth: false};
+    return {loading: false, error: action.payload};
   case AuthActionTypes.AUTH_LOGOUT:
-    return {loading: false, error: null, user: null, isAuth: false};
-  case AuthActionTypes.AUTH_CHECK:
-    return {loading: false, error: null, user: null, isAuth: false};
+    return {isAuth: false};
   case AuthActionTypes.AUTH_SIGHUP:
-    return {loading: true, error: null, user: null, isAuth: false};
+    return {loading: true, isAuth: false, isSignup: false};
+  case AuthActionTypes.AUTH_SIGHUP_SUCCESS:
+    return {loading: false, isAuth: false, isSignup: true};
   default:
     return state;
   }

@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import {Routes, Route, Navigate, useNavigate} from 'react-router-dom';
+import {useEffect} from 'react';
 
 import {privateRoutes, publicRoutes} from '../index';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
@@ -7,7 +8,14 @@ import {RouteNames} from './Routes.enum';
 
 
 const AppRouter = () => {
-  const {isAuth} = useTypedSelector(state => state.auth);
+  const router = useNavigate();
+  const {isAuth, isSignup} = useTypedSelector(state => state.auth);
+
+  useEffect(() => {
+    if (isSignup) {
+      router(RouteNames.LOGIN);
+    }
+  }, [isSignup]);
 
   return (
     isAuth ?

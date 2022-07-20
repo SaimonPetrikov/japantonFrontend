@@ -17,6 +17,7 @@ export const SignupStyled = styled.div`
 
 export const ButtonsStyled = styled.div`
   display: flex;
+  flex-direction: column;
   margin-top: 10px;
   gap: 10px;
 `;

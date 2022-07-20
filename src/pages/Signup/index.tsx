@@ -55,12 +55,12 @@ const Signup = () => {
     <SignupStyled>
       <HeaderStyled>Добро пожаловать!</HeaderStyled>
       <TextField
-        id="outlined-required"
+        id="name"
         label="Логин"
         onChange={event => setName(event.target.value)}
       />
       <TextField
-        id="outlined-required"
+        id="email_signup"
         label="Email"
         onChange={event => setEmail(event.target.value)}
       />

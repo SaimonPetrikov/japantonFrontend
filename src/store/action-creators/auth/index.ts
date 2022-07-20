@@ -1,8 +1,9 @@
 import {Dispatch} from 'redux';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import $api from '../../../http';
-import {AuthResponse} from '../../../http/typings';
+import {AuthResponse, AuthSignupResponse} from '../../../http/typings';
 
 import {AuthActions, AuthActionTypes, loginData, signupData} from './auth.typings';
 
@@ -65,11 +66,9 @@ export const authRegistration = (signup: signupData) => {
   return async (dispatch: Dispatch<AuthActions>) => {
     try {
       dispatch({type: AuthActionTypes.AUTH_SIGHUP});
-      const response = await $api.post<AuthResponse>('/auth/signup', signup);
-      console.log(response);
-      Cookies.set('token', response.data.access_token);
-      dispatch({type: AuthActionTypes.AUTH_SUCCESS, payload: response.data});
-      console.log('Вы зарегистрированы!');
+      const response = await axios.post<AuthSignupResponse>('http://localhost:80/api/auth/signup', signup);
+      dispatch({type: AuthActionTypes.AUTH_SIGHUP_SUCCESS, payload: response.data});
+      console.log(response.data);
     } catch (e) {
       dispatch({
         type: AuthActionTypes.AUTH_ERROR,
