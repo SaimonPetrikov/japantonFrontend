@@ -1,28 +1,38 @@
-import {AuthResponse, AuthSignupResponse, IUserProps} from '../../../../http/typings';
+export interface IUserProps {
+  id: number,
+  name: string,
+  email: string,
+  email_verified_at?: null,
+  created_at: string,
+  updated_at: string
+}
+
+export interface AuthResponse {
+  access_token: string,
+  token_type: string,
+  expires_in: number,
+  user: IUserProps,
+  message?: string
+}
 
 export interface AuthState {
-  user?: IUserProps | AuthSignupResponse | null;
+  payload?: AuthResponse | string | null;
   loading?: boolean;
-  error?: null | string;
   isAuth?: boolean;
   isSignup?: boolean;
-  message?: string;
 }
 
-export interface loginData {
-  email: string;
-  password: string;
-}
-
-export interface signupData {
-  name: string;
+export interface AuthData {
+  name?: string;
   email: string;
   password: string;
 }
 
 export enum AuthActionTypes {
   // eslint-disable-next-line no-unused-vars
-  AUTH_LOGIN = 'AUTH_LOGIN',
+  AUTH = 'AUTH',
+  // eslint-disable-next-line no-unused-vars
+  AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS',
   // eslint-disable-next-line no-unused-vars
   AUTH_SUCCESS = 'AUTH_SUCCESS',
   // eslint-disable-next-line no-unused-vars
@@ -30,18 +40,20 @@ export enum AuthActionTypes {
   // eslint-disable-next-line no-unused-vars
   AUTH_LOGOUT = 'AUTH_LOGOUT',
   // eslint-disable-next-line no-unused-vars
-  AUTH_SIGHUP = 'AUTH_SIGHUP',
-  // eslint-disable-next-line no-unused-vars
-  AUTH_SIGHUP_SUCCESS = 'AUTH_SIGHUP_SUCCESS'
+  AUTH_SIGNUP_SUCCESS = 'AUTH_SIGNUP_SUCCESS'
+}
+
+interface AuthAction {
+  type: AuthActionTypes.AUTH;
 }
 
 interface AuthLoginAction {
-  type: AuthActionTypes.AUTH_LOGIN;
+  type: AuthActionTypes.AUTH_LOGIN_SUCCESS;
+  payload: AuthResponse;
 }
 
 interface AuthSuccessAction {
   type: AuthActionTypes.AUTH_SUCCESS;
-  payload: AuthResponse
 }
 
 interface AuthErrorAction {
@@ -51,16 +63,13 @@ interface AuthErrorAction {
 
 interface AuthLogoutAction {
   type: AuthActionTypes.AUTH_LOGOUT;
+  payload: AuthResponse;
 }
 
 interface AuthSignupAction {
-  type: AuthActionTypes.AUTH_SIGHUP;
-}
-
-interface AuthSignupSuccessAction {
-  type: AuthActionTypes.AUTH_SIGHUP_SUCCESS;
-  payload: AuthSignupResponse
+  type: AuthActionTypes.AUTH_SIGNUP_SUCCESS;
+  payload: AuthResponse;
 }
 
 // eslint-disable-next-line max-len
-export type AuthActions = AuthLoginAction | AuthSuccessAction | AuthErrorAction | AuthLogoutAction | AuthSignupAction | AuthSignupSuccessAction
+export type AuthActions = AuthAction | AuthLoginAction | AuthSuccessAction | AuthErrorAction | AuthLogoutAction | AuthSignupAction
