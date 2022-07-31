@@ -42,7 +42,6 @@ export const authCheck = () => {
   return async (dispatch: Dispatch<AuthActions>) => {
     try {
       const response = await AuthService.refresh();
-      console.log(response);
       Cookies.set('token', response.data.access_token);
       dispatch({type: AuthActionTypes.AUTH_LOGIN_SUCCESS, payload: response.data});
       console.log(response.data);

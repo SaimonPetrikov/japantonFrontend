@@ -120,7 +120,8 @@
       "error",
       {
         "code": 120,
-        "ignoreUrls": true
+        "ignoreUrls": true,
+        "ignoreStrings": true
       }
     ],
     "max-nested-callbacks": [

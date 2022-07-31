@@ -1,11 +1,10 @@
 import {FC} from 'react';
 import {Button} from '@mui/material';
 
-import Logo from '../../../assets/logo.png';
-import {ButtonsStyled} from '../../Layout.styles';
+import Logo from '../../../assets/icons/Header/Header.icons/logo.png';
 import {useActions} from '../../../hooks/useActions';
 
-import {HeaderStyled, LogoStyled} from './Header.styles';
+import {ButtonsStyled, HeaderStyled, LogoStyled} from './Header.styles';
 
 const Header: FC = () => {
   const {authLogout} = useActions();

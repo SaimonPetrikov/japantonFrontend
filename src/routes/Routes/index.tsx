@@ -26,7 +26,7 @@ const AppRouter = () => {
             key={route.path}
           />
         )}
-        <Route path={'*'} element={<Navigate replace to={RouteNames.HOME} />} />
+        <Route path={'*'} element={<Navigate replace to={RouteNames.CARS_ACTIVE} />} />
       </Routes>      :
       <Routes>
         {publicRoutes.map(route =>

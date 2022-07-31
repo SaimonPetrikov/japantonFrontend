@@ -124,7 +124,7 @@ const transition = {
 };
 const global = {
   defaultFontSize: '15px',
-  defaultFontFamily: 'Inter',
+  defaultFontFamily: 'Roboto',
 };
 
 export interface ITheme {

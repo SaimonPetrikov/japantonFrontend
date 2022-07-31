@@ -10,3 +10,8 @@ export const HeaderStyled = styled.div`
 export const LogoStyled = styled.img`
   height: 50px;
 `;
+
+export const ButtonsStyled = styled.div`
+  display: flex;
+  gap: 10px;
+`;
