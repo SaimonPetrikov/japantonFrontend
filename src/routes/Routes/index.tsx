@@ -3,6 +3,7 @@ import {useEffect} from 'react';
 
 import {privateRoutes, publicRoutes} from '../index';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
+import {useActions} from '../../hooks/useActions';
 
 import {RouteNames} from './Routes.enum';
 
@@ -10,12 +11,15 @@ import {RouteNames} from './Routes.enum';
 const AppRouter = () => {
   const router = useNavigate();
   const {isAuth, isSignup} = useTypedSelector(state => state.auth);
+  const {carsAll} = useActions();
 
   useEffect(() => {
-    if (isSignup) {
-      router(RouteNames.LOGIN);
-    }
+    if (isSignup) router(RouteNames.LOGIN);
   }, [isSignup]);
+
+  useEffect(() => {
+    if (isAuth) carsAll();
+  }, [isAuth]);
 
   return (
     isAuth ?

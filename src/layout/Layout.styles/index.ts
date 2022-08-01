@@ -25,14 +25,18 @@ export const BodyStyled = styled.div`
   justify-content: center;
 `;
 
+export const PublicStyled = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const ChildrenStyled = styled.div`
   display: grid;
-  grid-template-columns: 230px auto;
+  grid-template-columns: 230px 1337px;
   grid-template-rows: 40px auto;
   grid-template-areas:
 \t\t"sidebar pagesHeader"
 \t\t"sidebar pagesBody";
-  width: 1140px;
   gap: 50px;
 `;
 

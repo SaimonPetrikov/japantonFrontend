@@ -6,6 +6,7 @@ import {FC} from 'react';
 import {ISearchProps} from './Search.typings';
 
 const Search: FC<ISearchProps> = ({payload}) => {
+
   return (
     <Stack spacing={2} sx={{ width: '100%'}}>
       <Autocomplete
@@ -13,7 +14,7 @@ const Search: FC<ISearchProps> = ({payload}) => {
         id="addBtn"
         size="small"
         disableClearable
-        options={payload.map(e => e)}
+        options={payload?.map(e => `${e.id}`)}
         renderInput={params => (
           <TextField
             {...params}

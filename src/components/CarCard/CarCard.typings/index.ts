@@ -1,5 +1,5 @@
 import {ICarProps} from '../../../store/action-creators/cars/cars.typings';
 
-export interface ISearchProps {
-  payload: ICarProps[]
+export interface ILoadingButtonProps {
+  cars: ICarProps
 }

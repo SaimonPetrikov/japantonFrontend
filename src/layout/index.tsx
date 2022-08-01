@@ -6,7 +6,7 @@ import {
   BodyStyled,
   ChildrenStyled,
   HeaderStyled,
-  LayoutStyled, PagesBodyStyled, PagesHeaderStyled,
+  LayoutStyled, PagesBodyStyled, PagesHeaderStyled, PublicStyled,
   SidebarStyled
 } from './Layout.styles';
 import {ILayoutProps} from './Layout.typings';
@@ -25,19 +25,20 @@ const Layout: FC<ILayoutProps> = ({children}) => {
           </HeaderStyled>
       }
       <BodyStyled>
-        <ChildrenStyled>
-          {isAuth && <>
+        {isAuth ?
+          <ChildrenStyled>
             <SidebarStyled>
               <Sidebar />
             </SidebarStyled>
             <PagesHeaderStyled>
               <PagesHeader />
             </PagesHeaderStyled>
-          </>}
-          <PagesBodyStyled>
-            {children}
-          </PagesBodyStyled>
-        </ChildrenStyled>
+            <PagesBodyStyled>
+              {children}
+            </PagesBodyStyled>
+          </ChildrenStyled>          :
+          <PublicStyled>{children}</PublicStyled>
+        }
       </BodyStyled>
     </LayoutStyled>
   );
