@@ -1,5 +1,6 @@
 import {Checkbox, FormControlLabel} from '@mui/material';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import HeaderPage from '../../../../../ui/HeaderPage';
 import Selection from '../../../../../components/Select';
@@ -22,16 +23,40 @@ const CarsActive = () => {
   const {carAll, loadingCars} = useTypedSelector(state => state.car);
   const [retailChecked, setRetailChecked] = useState(false);
   const [wholesaleChecked, setWholesaleChecked] = useState(false);
+  const [items, setItems] = useState<ICarProps[]>([]);
+
+  useEffect(() => {
+    if (!carAll) return;
+    const response = (carAll as CarResponse).car;
+    const data = (response as ICarProps[]);
+    setItems(data.filter((_, index) => index < 12));
+  }, [carAll]);
 
   const carsList = () => {
     if (!carAll) return;
     const response = (carAll as CarResponse).car;
     const data = (response as ICarProps[]);
+
+    const nextHandler = () => {
+      if (items.length === data.length) return;
+      setTimeout(() => {
+        // eslint-disable-next-line max-len
+        setItems(items.concat(data.filter((_, index) => index > items.length && index <= items.length + 5)));
+      }, 1500);
+    };
+
     if (data.length !== 0) {
       return (
-        data.map(elem => (
-          <CarCard key={elem.id} cars={elem}/>
-        )));
+        <InfiniteScroll
+          dataLength={items.length}
+          next={nextHandler}
+          hasMore={true}
+          loader={(items.length !== data.length - 1) && <h2>Loading...</h2>}
+        >
+          {items.map(elem => (
+            <CarCard key={elem.id} cars={elem}/>
+          ))}
+        </InfiniteScroll>);
     } else {
       return (
         <h1>Список пуст</h1>

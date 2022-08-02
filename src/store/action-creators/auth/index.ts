@@ -25,6 +25,7 @@ export const authLogin = (login: AuthData) => {
 export const authLogout = () => {
   return async (dispatch: Dispatch<AuthActions>) => {
     try {
+      dispatch({type: AuthActionTypes.AUTH});
       const response = await AuthService.logout();
       Cookies.remove('token');
       dispatch({type: AuthActionTypes.AUTH_LOGOUT, payload: response.data});
@@ -41,6 +42,7 @@ export const authLogout = () => {
 export const authCheck = () => {
   return async (dispatch: Dispatch<AuthActions>) => {
     try {
+      dispatch({type: AuthActionTypes.AUTH});
       const response = await AuthService.refresh();
       Cookies.set('token', response.data.access_token);
       dispatch({type: AuthActionTypes.AUTH_LOGIN_SUCCESS, payload: response.data});
