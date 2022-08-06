@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import HeaderPage from '../../../../../ui/HeaderPage';
 import Selection from '../../../../../components/Select';
 import CarCard from '../../../../../components/CarCard';
-import {cars, carsHeaders} from '../../../../../assets/helpers/carsActive.helpers';
+import {cars, carsHeaders} from '../../../../../assets/helpers/Cars/CarsActive.helpers';
 import {useTypedSelector} from '../../../../../hooks/useTypedSelector';
 import {CarResponse, ICarProps} from '../../../../../store/action-creators/cars/cars.typings';
 import {useActions} from '../../../../../hooks/useActions';
@@ -30,19 +30,19 @@ const CarsActive = () => {
   const data = (response as ICarProps[]);
 
   useEffect(() => {
-    if (!data || data?.constructor === Array) return;
+    if (data?.constructor === Array) return;
     carsAll();
   }, []);
 
   useEffect(() => {
     if (loading || !data) return;
-    if (data.constructor === Array) setItems(data.filter((_, index) => index < 12));
+    if (data.constructor === Array) setItems(data.filter((_, index) => index + 1 < 12));
   }, [loading]);
 
   const nextHandler = () => {
     if (items.length === data.length) return;
     // eslint-disable-next-line max-len
-    setItems(items.concat(data.filter((_, index) => index > items.length && index <= items.length + 5)));
+    setItems(items.concat(data.filter((_, index) => index + 1 > items.length && index + 1 <= items.length + 5)));
   };
 
   const carsList = () => {
@@ -54,7 +54,7 @@ const CarsActive = () => {
           dataLength={items.length}
           next={nextHandler}
           hasMore={true}
-          loader={(items.length !== data.length - 1) && <h2>Loading...</h2>}
+          loader={(items.length !== data.length) && <h2>Loading...</h2>}
         >
           {items.map((elem, index) => (
             <CarCard key={elem.id} cars={data[index]}/>

@@ -10,6 +10,8 @@ export enum RouteNames {
   // eslint-disable-next-line no-unused-vars
   CARS_ITEM = '/cars',
   // eslint-disable-next-line no-unused-vars
+  CARS_UPDATE = '/cars/update',
+  // eslint-disable-next-line no-unused-vars
   CARS_ARCHIVE = '/cars/archive',
   // eslint-disable-next-line no-unused-vars
   CARS_TYPES_OF_SPARE_PARTS

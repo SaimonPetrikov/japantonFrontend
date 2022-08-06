@@ -63,9 +63,9 @@ export const carUpdate = (data: CarItemUpdate) => {
       dispatch({type: CarActionTypes.CAR_START});
       const responseUpdate = await CarService.update(data);
       console.log(responseUpdate.data);
-      const responseAll = await CarService.all();
-      dispatch({type: CarActionTypes.CAR_DATA, payload: responseAll.data});
-      console.log(responseAll.data);
+      const responseSingle = await CarService.single(data.id);
+      console.log(responseSingle.data);
+      dispatch({type: CarActionTypes.CAR_DATA, payload: responseSingle.data});
       dispatch({type: CarActionTypes.CAR_FINISH});
     } catch (e) {
       dispatch({

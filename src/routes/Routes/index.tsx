@@ -19,7 +19,7 @@ const AppRouter = () => {
     isAuth ?
       <Routes>
         {privateRoutes.map(route => {
-          if (route.path === RouteNames.CARS_ITEM) {
+          if (route.path === RouteNames.CARS_ITEM || route.path === RouteNames.CARS_UPDATE) {
             return <Route path={`${route.path}/:id`}
               element={<route.element/>}
               key={route.path}

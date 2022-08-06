@@ -2,14 +2,22 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useNavigate} from 'react-router-dom';
 import {Checkbox, FormControlLabel} from '@mui/material';
-import {ChangeEvent, useState} from 'react';
+import {ChangeEvent, useEffect, useState} from 'react';
 
 import HeaderPage from '../../../../../ui/HeaderPage';
 import Selection from '../../../../../components/Select';
-import {cars} from '../../../../../assets/helpers/carsActive.helpers';
+import {cars} from '../../../../../assets/helpers/Cars/CarsActive.helpers';
 import {useActions} from '../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../routes/Routes/Routes.enum';
 import {checkStyles} from '../Active/Active.styles';
+import {
+  createBottomFields,
+  createCarObj,
+  createFields,
+  uploadBtns
+} from '../../../../../assets/helpers/Cars/CarsCreate.helpers';
+import {useTypedSelector} from '../../../../../hooks/useTypedSelector';
+import {AuthResponse} from '../../../../../store/action-creators/auth/auth.typings';
 
 import {
   AddBtnStyled,
@@ -19,61 +27,27 @@ import {
 
 
 const CarsCreate = () => {
+  const {payload} = useTypedSelector(state => state.auth);
   const {carCreate} = useActions();
   const router = useNavigate();
   const [retailChecked, setRetailChecked] = useState(false);
   const [wholesaleChecked, setWholesaleChecked] = useState(false);
   const [inWayChecked, setInWayChecked] = useState(false);
   const [archiveChecked, setArchiveChecked] = useState(false);
+  const [createObj, setCreateObj] = useState(createCarObj);
 
-  const createFields = ['№ кузова', '№ Двигателя', 'Пробег', 'Фара', 'Стоп', 'Брак'];
-  const createBottomFields = ['Пробег', 'Фара', 'Видео', 'Color', 'Optic', 'No TES'];
-  const uploadBtns = ['Загрузить фото', 'Загрузить документы', 'Загрузить видео'];
-
-  const createCar = {
-    // eslint-disable-next-line camelcase
-    manufacturer_id: 10,
-    // eslint-disable-next-line camelcase
-    model_id: 3,
-    // eslint-disable-next-line camelcase
-    body_id: 2,
-    // eslint-disable-next-line camelcase
-    engine_id: 2,
-    // eslint-disable-next-line camelcase
-    transmission_id: 1,
-    mileage: 111,
-    headlight: 'test',
-    taillight: 'test',
-    marriage: 'test',
-    notes: 'test',
-    // eslint-disable-next-line camelcase
-    notes_zibiz: 'test',
-    images: 'test',
-    videos: 'test',
-    // eslint-disable-next-line camelcase
-    user_id: 3,
-    // eslint-disable-next-line camelcase
-    body_no: 'test',
-    // eslint-disable-next-line camelcase
-    engine_no: 'test',
-    // eslint-disable-next-line camelcase
-    in_the_way: 2,
-    retail: 2,
-    small: 2,
-    archive: 2,
-    // eslint-disable-next-line camelcase
-    sticker_notes: 'test11111@er.com',
-    // eslint-disable-next-line camelcase
-    manager_id: 2,
-    documents: 'test',
-    // eslint-disable-next-line camelcase
-    provider_id: 4,
-    // eslint-disable-next-line camelcase
-    provider_engine_price: 1236
-  };
+  useEffect(() => {
+    setCreateObj(prevState => ({
+      ...prevState,
+      // eslint-disable-next-line camelcase
+      sticker_notes: (payload as AuthResponse).user.email,
+      // eslint-disable-next-line camelcase
+      user_id: (payload as AuthResponse).user.id
+    }));
+  }, []);
 
   const addHandler = () => {
-    carCreate(createCar);
+    carCreate(createObj);
     router(RouteNames.CARS_ACTIVE);
   };
 
@@ -84,6 +58,93 @@ const CarsCreate = () => {
   const handleInWay = (event: ChangeEvent<HTMLInputElement>) => setInWayChecked(event.target.checked);
 
   const handleArchive = (event: ChangeEvent<HTMLInputElement>) => setArchiveChecked(event.target.checked);
+
+  const setCurrVal = val => {
+    switch (val) {
+    case '№ кузова':
+      return createObj.body_no;
+    case '№ Двигателя':
+      return createObj.engine_no;
+    case 'Пробег':
+      return createObj.in_the_way;
+    case 'Фара':
+      return createObj.notes;
+    case 'Стоп':
+      return createObj.notes_zibiz;
+    case 'Брак':
+      return createObj.taillight;
+    case 'Color':
+      return createObj.images;
+    case 'Optic':
+      return createObj.documents;
+    case 'No TES':
+      return createObj.headlight;
+    default:
+      return;
+    }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    switch (event.target.id) {
+    case '№ кузова':
+      // eslint-disable-next-line camelcase
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        body_no: event.target.value
+      }));
+    case '№ Двигателя':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        engine_no: event.target.value
+      }));
+    case 'Пробег':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        in_the_way: +event.target.value
+      }));
+    case 'Фара':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        notes: event.target.value
+      }));
+    case 'Стоп':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        notes_zibiz: event.target.value
+      }));
+    case 'Брак':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        taillight: event.target.value
+      }));
+    case 'Color':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        images: event.target.value
+      }));
+    case 'Optic':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        documents: event.target.value
+      }));
+    case 'No TES':
+      return setCreateObj(prevState => ({
+        ...prevState,
+        // eslint-disable-next-line camelcase
+        headlight: event.target.value
+      }));
+    default:
+      return;
+    }
+  };
 
   return (
     <>
@@ -104,7 +165,7 @@ const CarsCreate = () => {
       </SelectionStyled>
       <CreateFieldsStyled>
         {createFields.map(e => (
-          <TextField id="outlined-basic" label={e} variant="outlined" key={e} sx={{width: '1337px'}} />
+          <TextField id={e} label={e} variant="outlined" key={e} sx={{width: '1337px'}} value={setCurrVal(e)} onChange={handleChange} />
         ))}
       </CreateFieldsStyled>
       <UploadBtnsStyled>
@@ -116,7 +177,7 @@ const CarsCreate = () => {
       </UploadBtnsStyled>
       <CreateFieldsStyled>
         {createBottomFields.map(e => (
-          <TextField id="outlined-basic" label={e} variant="outlined" key={e} sx={{width: '1337px'}} />
+          <TextField id={e} label={e} variant="outlined" key={e} sx={{width: '1337px'}} value={setCurrVal(e)} onChange={handleChange} />
         ))}
       </CreateFieldsStyled>
       <ChecksStyled>
