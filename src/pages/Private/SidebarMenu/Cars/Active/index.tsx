@@ -30,7 +30,7 @@ const CarsActive = () => {
   const data = (response as ICarProps[]);
 
   useEffect(() => {
-    if (data?.constructor === Array) return;
+    if (data?.constructor === Array || data?.constructor === Object) return;
     carsAll();
   }, []);
 

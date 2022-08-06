@@ -42,11 +42,16 @@ const CarsCreate = () => {
       // eslint-disable-next-line camelcase
       sticker_notes: (payload as AuthResponse).user.email,
       // eslint-disable-next-line camelcase
-      user_id: (payload as AuthResponse).user.id
+      user_id: (payload as AuthResponse).user.id,
+      color: 'test',
+      optic: 'test',
+      marriage: 'test',
+      videos: 'test'
     }));
   }, []);
 
   const addHandler = () => {
+    console.log('createObj ===', createObj);
     carCreate(createObj);
     router(RouteNames.CARS_ACTIVE);
   };

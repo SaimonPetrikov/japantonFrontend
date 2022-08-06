@@ -81,7 +81,6 @@ export const carDelete = (data: CarData) => {
     try {
       dispatch({type: CarActionTypes.CAR_START});
       const responseDelete = await CarService.delete(data);
-      dispatch({type: CarActionTypes.CAR_DATA, payload: responseDelete.data});
       console.log(responseDelete.data);
       const responseAll = await CarService.all();
       dispatch({type: CarActionTypes.CAR_DATA, payload: responseAll.data});
