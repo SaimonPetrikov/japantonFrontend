@@ -1,23 +1,29 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import {FC} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import CarIcon from '../../assets/icons/Pages/CarsActive.icons/carIcon.png';
 import {useActions} from '../../hooks/useActions';
+import {RouteNames} from '../../routes/Routes/Routes.enum';
 
 import {ArchiveStyled, CarCardStyled, DeleteStyled, PStyled} from './CarCard.styles';
-import {ILoadingButtonProps} from './CarCard.typings';
+import {ICarCardProps} from './CarCard.typings';
 
 
-const CarCard: FC<ILoadingButtonProps> = ({cars}) => {
-  const {carDelete} = useActions();
+const CarCard: FC<ICarCardProps> = ({cars}) => {
+  const router = useNavigate();
+  const {carDelete, carSingle} = useActions();
 
-  const deleteHandler = () => {
-    carDelete(cars.id);
+  const showCarHandler = () => {
+    router(`${RouteNames.CARS_ITEM}/${cars.id}`);
+    carSingle(cars.id);
   };
 
+  const deleteHandler = () => carDelete(cars.id);
+
   return (
-    <CarCardStyled>
+    <CarCardStyled onClick={showCarHandler}>
       <p>{cars.id}</p>
       <img src={CarIcon} alt="Car Icon"/>
       <div>

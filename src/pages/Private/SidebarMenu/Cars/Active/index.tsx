@@ -8,6 +8,7 @@ import CarCard from '../../../../../components/CarCard';
 import {cars, carsHeaders} from '../../../../../assets/helpers/carsActive.helpers';
 import {useTypedSelector} from '../../../../../hooks/useTypedSelector';
 import {CarResponse, ICarProps} from '../../../../../store/action-creators/cars/cars.typings';
+import {useActions} from '../../../../../hooks/useActions';
 
 import {
   CarCardStyled,
@@ -20,30 +21,32 @@ import {
 } from './Active.styles';
 
 const CarsActive = () => {
-  const {carAll, loadingCars} = useTypedSelector(state => state.car);
+  const {carsAll} = useActions();
+  const {loading, payload} = useTypedSelector(state => state.car);
   const [retailChecked, setRetailChecked] = useState(false);
   const [wholesaleChecked, setWholesaleChecked] = useState(false);
   const [items, setItems] = useState<ICarProps[]>([]);
+  const response = (payload as CarResponse)?.car;
+  const data = (response as ICarProps[]);
 
   useEffect(() => {
-    if (!carAll) return;
-    const response = (carAll as CarResponse).car;
-    const data = (response as ICarProps[]);
-    setItems(data.filter((_, index) => index < 12));
-  }, [carAll]);
+    if (!data || data?.constructor === Array) return;
+    carsAll();
+  }, []);
+
+  useEffect(() => {
+    if (loading || !data) return;
+    if (data.constructor === Array) setItems(data.filter((_, index) => index < 12));
+  }, [loading]);
+
+  const nextHandler = () => {
+    if (items.length === data.length) return;
+    // eslint-disable-next-line max-len
+    setItems(items.concat(data.filter((_, index) => index > items.length && index <= items.length + 5)));
+  };
 
   const carsList = () => {
-    if (!carAll) return;
-    const response = (carAll as CarResponse).car;
-    const data = (response as ICarProps[]);
-
-    const nextHandler = () => {
-      if (items.length === data.length) return;
-      setTimeout(() => {
-        // eslint-disable-next-line max-len
-        setItems(items.concat(data.filter((_, index) => index > items.length && index <= items.length + 5)));
-      }, 1500);
-    };
+    if (!payload || !data) return;
 
     if (data.length !== 0) {
       return (
@@ -53,8 +56,8 @@ const CarsActive = () => {
           hasMore={true}
           loader={(items.length !== data.length - 1) && <h2>Loading...</h2>}
         >
-          {items.map(elem => (
-            <CarCard key={elem.id} cars={elem}/>
+          {items.map((elem, index) => (
+            <CarCard key={elem.id} cars={data[index]}/>
           ))}
         </InfiniteScroll>);
     } else {
@@ -94,9 +97,9 @@ const CarsActive = () => {
             </CarCardStyled>
           ))}
         </CarsHeadStyled>
-        {!loadingCars ?
-          carsList() :
-          <h1>Машины загружаются...</h1>}
+        {loading ? <h1>Загрузка...</h1> :
+          carsList()
+        }
       </CarsStyled>
     </>
   );

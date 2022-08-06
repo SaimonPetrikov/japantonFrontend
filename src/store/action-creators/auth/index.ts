@@ -53,6 +53,7 @@ export const authCheck = () => {
         payload: 'Ошибка при проверке авторизации'
       });
       console.log('Вы НЕ авторизованы!');
+      Cookies.remove('token');
     }
   };
 };

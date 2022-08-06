@@ -2,30 +2,22 @@
 import {CarActions, CarActionTypes, CarState} from '../../action-creators/cars/cars.typings';
 
 const initialState: CarState = {
-  loadingCars: false,
+  loading: false,
   payload: null,
-  carAll: null
+  error: ''
 };
 
-const authReducer = (state = initialState, action: CarActions): CarState => {
+export const carReducer = (state = initialState, action: CarActions): CarState => {
   switch (action.type) {
-  case CarActionTypes.CAR:
-    return {loadingCars: true};
-  case CarActionTypes.CAR_ALL:
-    return {loadingCars: false, carAll: action.payload};
-  case CarActionTypes.CAR_SINGLE:
-    return {loadingCars: false, payload: action.payload};
-  case CarActionTypes.CAR_CREATE:
-    return {loadingCars: true, payload: action.payload};
-  case CarActionTypes.CAR_UPDATE:
-    return {payload: action.payload};
-  case CarActionTypes.CAR_DELETE:
-    return {loadingCars: true, payload: action.payload};
+  case CarActionTypes.CAR_START:
+    return {...state, loading: true, error: ''};
+  case CarActionTypes.CAR_DATA:
+    return {...state, payload: action.payload};
+  case CarActionTypes.CAR_FINISH:
+    return {...state, loading: false};
   case CarActionTypes.CAR_ERROR:
-    return {loadingCars: false, payload: action.payload};
+    return {...state, loading: false, error: action.payload};
   default:
     return state;
   }
 };
-
-export default authReducer;

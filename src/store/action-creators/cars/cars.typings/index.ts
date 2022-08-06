@@ -38,9 +38,9 @@ export interface CarResponse {
 }
 
 export interface CarState {
+  loading?: boolean;
   payload?: CarResponse | string | null;
-  carAll?: CarResponse | null
-  loadingCars?: boolean;
+  error?: string
 }
 
 export interface CarItem {
@@ -74,52 +74,56 @@ export interface CarItem {
   provider_engine_price?: number
 }
 
+export interface updateCar {
+  taillight: string,
+  marriage: string,
+  notes: string,
+  notes_zibiz: string,
+  images: string,
+  videos: string,
+  user_id: number,
+  body_no: string,
+  engine_no: string,
+  in_the_way: number,
+  retail: number,
+  small: number,
+  archive: number,
+  sticker_notes: string,
+  manager_id: number,
+  documents: string,
+  provider_id: number,
+  provider_engine_price: number
+}
+
+export interface CarItemUpdate {
+  id: number,
+  updateData: updateCar
+}
+
 export type CarData = CarItem | number
 
 export enum CarActionTypes {
   // eslint-disable-next-line no-unused-vars
-  CAR = 'CAR',
+  CAR_START = 'CAR_START',
   // eslint-disable-next-line no-unused-vars
-  CAR_ALL = 'CAR_ALL',
+  CAR_DATA = 'CAR_DATA',
   // eslint-disable-next-line no-unused-vars
-  CAR_CREATE = 'CAR_CREATE',
-  // eslint-disable-next-line no-unused-vars
-  CAR_UPDATE = 'CAR_UPDATE',
-  // eslint-disable-next-line no-unused-vars
-  CAR_DELETE = 'CAR_DELETE',
-  // eslint-disable-next-line no-unused-vars
-  CAR_SINGLE = 'CAR_SINGLE',
+  CAR_FINISH = 'CAR_FINISH',
   // eslint-disable-next-line no-unused-vars
   CAR_ERROR = 'CAR_ERROR'
 }
 
-interface CarAllAction {
-  type: CarActionTypes.CAR_ALL;
+interface CarStartAction {
+  type: CarActionTypes.CAR_START;
+}
+
+interface CarDataAction {
+  type: CarActionTypes.CAR_DATA;
   payload: CarResponse;
 }
 
-interface CarCreateAction {
-  type: CarActionTypes.CAR_CREATE;
-  payload: CarResponse;
-}
-
-interface CarUpdateAction {
-  type: CarActionTypes.CAR_UPDATE;
-  payload: CarResponse;
-}
-
-interface CarDeleteAction {
-  type: CarActionTypes.CAR_DELETE;
-  payload: CarResponse;
-}
-
-interface CarSingleAction {
-  type: CarActionTypes.CAR_SINGLE;
-  payload: CarResponse;
-}
-
-interface CarAction {
-  type: CarActionTypes.CAR;
+interface CarFinishAction {
+  type: CarActionTypes.CAR_FINISH;
 }
 
 interface CarErrorAction {
@@ -128,4 +132,4 @@ interface CarErrorAction {
 }
 
 // eslint-disable-next-line max-len
-export type CarActions = CarAllAction | CarCreateAction | CarUpdateAction | CarDeleteAction | CarSingleAction | CarAction | CarErrorAction
+export type CarActions = CarDataAction | CarStartAction | CarErrorAction | CarFinishAction

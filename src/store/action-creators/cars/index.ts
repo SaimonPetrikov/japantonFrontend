@@ -2,19 +2,20 @@ import {Dispatch} from 'redux';
 
 import CarService from '../../../services/CarService';
 
-import {CarActions, CarActionTypes, CarData} from './cars.typings';
+import {CarActions, CarActionTypes, CarData, CarItemUpdate} from './cars.typings';
 
 export const carsAll = () => {
   return async (dispatch: Dispatch<CarActions>) => {
     try {
-      dispatch({type: CarActionTypes.CAR});
+      dispatch({type: CarActionTypes.CAR_START});
       const response = await CarService.all();
-      dispatch({type: CarActionTypes.CAR_ALL, payload: response.data});
+      dispatch({type: CarActionTypes.CAR_DATA, payload: response.data});
       console.log(response.data);
+      dispatch({type: CarActionTypes.CAR_FINISH});
     } catch (e) {
       dispatch({
         type: CarActionTypes.CAR_ERROR,
-        payload: `Ошибка при запросе машин: ${e}`
+        payload: `Ошибка при запросе всех машин: ${e}`
       });
     }
   };
@@ -23,13 +24,13 @@ export const carsAll = () => {
 export const carCreate = (data: CarData) => {
   return async (dispatch: Dispatch<CarActions>) => {
     try {
-      dispatch({type: CarActionTypes.CAR});
+      dispatch({type: CarActionTypes.CAR_START});
       const responseCreate = await CarService.create(data);
-      dispatch({type: CarActionTypes.CAR_CREATE, payload: responseCreate.data});
       console.log(responseCreate.data);
-      const response = await CarService.all();
-      dispatch({type: CarActionTypes.CAR_ALL, payload: response.data});
-      console.log(response.data);
+      const responseAll = await CarService.all();
+      console.log(responseAll.data);
+      dispatch({type: CarActionTypes.CAR_DATA, payload: responseAll.data});
+      dispatch({type: CarActionTypes.CAR_FINISH});
     } catch (e) {
       dispatch({
         type: CarActionTypes.CAR_ERROR,
@@ -42,10 +43,11 @@ export const carCreate = (data: CarData) => {
 export const carSingle = (data: CarData) => {
   return async (dispatch: Dispatch<CarActions>) => {
     try {
-      dispatch({type: CarActionTypes.CAR});
+      dispatch({type: CarActionTypes.CAR_START});
       const response = await CarService.single(data);
-      dispatch({type: CarActionTypes.CAR_SINGLE, payload: response.data});
+      dispatch({type: CarActionTypes.CAR_DATA, payload: response.data});
       console.log(response.data);
+      dispatch({type: CarActionTypes.CAR_FINISH});
     } catch (e) {
       dispatch({
         type: CarActionTypes.CAR_ERROR,
@@ -55,16 +57,16 @@ export const carSingle = (data: CarData) => {
   };
 };
 
-export const carUpdate = (data: CarData) => {
+export const carUpdate = (data: CarItemUpdate) => {
   return async (dispatch: Dispatch<CarActions>) => {
     try {
-      dispatch({type: CarActionTypes.CAR});
+      dispatch({type: CarActionTypes.CAR_START});
       const responseUpdate = await CarService.update(data);
-      dispatch({type: CarActionTypes.CAR_UPDATE, payload: responseUpdate.data});
       console.log(responseUpdate.data);
-      const response = await CarService.all();
-      dispatch({type: CarActionTypes.CAR_ALL, payload: response.data});
-      console.log(response.data);
+      const responseAll = await CarService.all();
+      dispatch({type: CarActionTypes.CAR_DATA, payload: responseAll.data});
+      console.log(responseAll.data);
+      dispatch({type: CarActionTypes.CAR_FINISH});
     } catch (e) {
       dispatch({
         type: CarActionTypes.CAR_ERROR,
@@ -77,13 +79,14 @@ export const carUpdate = (data: CarData) => {
 export const carDelete = (data: CarData) => {
   return async (dispatch: Dispatch<CarActions>) => {
     try {
-      dispatch({type: CarActionTypes.CAR});
+      dispatch({type: CarActionTypes.CAR_START});
       const responseDelete = await CarService.delete(data);
-      dispatch({type: CarActionTypes.CAR_DELETE, payload: responseDelete.data});
+      dispatch({type: CarActionTypes.CAR_DATA, payload: responseDelete.data});
       console.log(responseDelete.data);
-      const response = await CarService.all();
-      dispatch({type: CarActionTypes.CAR_ALL, payload: response.data});
-      console.log(response.data);
+      const responseAll = await CarService.all();
+      dispatch({type: CarActionTypes.CAR_DATA, payload: responseAll.data});
+      console.log(responseAll.data);
+      dispatch({type: CarActionTypes.CAR_FINISH});
     } catch (e) {
       dispatch({
         type: CarActionTypes.CAR_ERROR,

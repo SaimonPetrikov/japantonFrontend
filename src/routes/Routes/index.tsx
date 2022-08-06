@@ -3,33 +3,34 @@ import {useEffect} from 'react';
 
 import {privateRoutes, publicRoutes} from '../index';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
-import {useActions} from '../../hooks/useActions';
 
 import {RouteNames} from './Routes.enum';
 
 
 const AppRouter = () => {
-  const router = useNavigate();
   const {isAuth, isSignup} = useTypedSelector(state => state.auth);
-  const {carsAll} = useActions();
+  const router = useNavigate();
 
   useEffect(() => {
     if (isSignup) router(RouteNames.LOGIN);
   }, [isSignup]);
 
-  useEffect(() => {
-    if (isAuth) carsAll();
-  }, [isAuth]);
-
   return (
     isAuth ?
       <Routes>
-        {privateRoutes.map(route =>
-          <Route path={route.path}
-            element={<route.element/>}
-            key={route.path}
-          />
-        )}
+        {privateRoutes.map(route => {
+          if (route.path === RouteNames.CARS_ITEM) {
+            return <Route path={`${route.path}/:id`}
+              element={<route.element/>}
+              key={route.path}
+            />;
+          } else {
+            return <Route path={route.path}
+              element={<route.element/>}
+              key={route.path}
+            />;
+          }
+        })}
         <Route path={'*'} element={<Navigate replace to={RouteNames.CARS_ACTIVE} />} />
       </Routes>      :
       <Routes>

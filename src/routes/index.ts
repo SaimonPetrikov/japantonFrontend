@@ -29,6 +29,7 @@ import RetailFirst from '../pages/Private/SidebarMenu/Retail/Test1';
 import RetailSecond from '../pages/Private/SidebarMenu/Retail/Test2';
 import RetailThird from '../pages/Private/SidebarMenu/Retail/Test3';
 import CarsCreate from '../pages/Private/SidebarMenu/Cars/Create';
+import CarItem from '../pages/Private/SidebarMenu/Cars/CarItem';
 
 import {RouteNames} from './Routes/Routes.enum';
 import {IRouteProps} from './Routes/Routes.typings';
@@ -41,6 +42,7 @@ export const publicRoutes: IRouteProps[] = [
 export const privateRoutes: IRouteProps[] = [
   {path: RouteNames.CARS_ACTIVE, element: CarsActive},
   {path: RouteNames.CARS_CREATE, element: CarsCreate},
+  {path: RouteNames.CARS_ITEM, element: CarItem},
   {path: RouteNames.CARS_ARCHIVE, element: CarsArchive},
   {path: RouteNames.CARS_TYPES_OF_SPARE_PARTS, element: CarsTypesOfSpareParts},
   {path: RouteNames.CARS_SPARE_PARTS, element: CarsSpareParts},
