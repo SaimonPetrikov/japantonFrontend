@@ -1,9 +1,12 @@
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import {FC} from 'react';
+
+import {ISearchProps} from './Search.typings';
 
 
-const Search = () => {
+const Search: FC<ISearchProps> = ({name, width}) => {
   // const {payload} = useTypedSelector(state => state.car);
   //
   // const searchData = () => {
@@ -13,7 +16,7 @@ const Search = () => {
   // };
 
   return (
-    <Stack spacing={2} sx={{ width: '100%'}}>
+    <Stack spacing={2} sx={{ width: {width}}}>
       <Autocomplete
         freeSolo
         id="addBtn"
@@ -24,7 +27,7 @@ const Search = () => {
         renderInput={params => (
           <TextField
             {...params}
-            label="Введите что Вам нужно..."
+            label={name}
             InputProps={{
               ...params.InputProps,
               type: 'search'

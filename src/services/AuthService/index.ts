@@ -1,5 +1,5 @@
 import $api from '../../http';
-import {AuthResponse} from '../../store/action-creators/auth/auth.typings';
+import {AuthResponse} from '../../store/slices/Auth/authActionCreators/auth.typings';
 
 const AuthService = {
   signup: data => $api.post<AuthResponse>('/auth/signup', data),

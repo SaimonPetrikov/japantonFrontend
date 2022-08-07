@@ -1,5 +1,6 @@
 export const createFields = ['№ кузова', '№ Двигателя', 'Пробег', 'Фара', 'Стоп', 'Брак'];
 export const createBottomFields = ['Color', 'Optic', 'No TES'];
+
 export const uploadBtns = ['Загрузить фото', 'Загрузить документы', 'Загрузить видео'];
 
 export   const createCarObj = {

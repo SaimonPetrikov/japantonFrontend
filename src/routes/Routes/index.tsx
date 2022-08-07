@@ -19,7 +19,13 @@ const AppRouter = () => {
     isAuth ?
       <Routes>
         {privateRoutes.map(route => {
-          if (route.path === RouteNames.CARS_ITEM || route.path === RouteNames.CARS_UPDATE) {
+          // eslint-disable-next-line max-len
+          if (route.path === RouteNames.CARS_SHOW || route.path === RouteNames.CARS_UPDATE) {
+            return <Route path={`${route.path}/:id`}
+              element={<route.element/>}
+              key={route.path}
+            />;
+          } else if (route.path === RouteNames.CARS_PARTS_SHOW || route.path === RouteNames.CARS_PARTS_UPDATE) {
             return <Route path={`${route.path}/:id`}
               element={<route.element/>}
               key={route.path}

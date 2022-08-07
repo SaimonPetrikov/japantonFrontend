@@ -8,18 +8,24 @@ export enum RouteNames {
   // eslint-disable-next-line no-unused-vars
   CARS_CREATE = '/cars/create',
   // eslint-disable-next-line no-unused-vars
-  CARS_ITEM = '/cars',
+  CARS_SHOW = '/cars',
   // eslint-disable-next-line no-unused-vars
   CARS_UPDATE = '/cars/update',
   // eslint-disable-next-line no-unused-vars
   CARS_ARCHIVE = '/cars/archive',
   // eslint-disable-next-line no-unused-vars
-  CARS_TYPES_OF_SPARE_PARTS
-  = '/cars/types_of_spare_parts',
+  CARS_PARTS_TYPES
+  = '/cars/parts_types',
   // eslint-disable-next-line no-unused-vars
-  CARS_SPARE_PARTS = '/cars/spare_parts',
+  CARS_PARTS = '/cars/parts/all',
   // eslint-disable-next-line no-unused-vars
-  CARS_SPARE_PARTS_STRUCTURE = '/cars/spare_parts_structure',
+  CARS_PARTS_CREATE = '/cars/parts/create',
+  // eslint-disable-next-line no-unused-vars
+  CARS_PARTS_SHOW = '/cars/parts',
+  // eslint-disable-next-line no-unused-vars
+  CARS_PARTS_UPDATE = '/cars/parts/update',
+  // eslint-disable-next-line no-unused-vars
+  CARS_PARTS_STRUCTURE = '/cars/parts_structure',
   // eslint-disable-next-line no-unused-vars
   CARS_CATALOG = '/cars/catalog',
   // eslint-disable-next-line no-unused-vars

@@ -13,9 +13,9 @@ import { ReactComponent as SecondLevelIcon } from './icons/Menu/Menu.icons/Secon
 const secondLvlCars = [
   { route: 'cars/active', name: 'Активные', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_active },
   { route: 'cars/archive', name: 'Архив', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_archive },
-  { route: 'cars/types_of_spare_parts', name: 'Типы запчастей', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_types_of_spare_parts },
-  { route: 'cars/spare_parts', name: 'Запчасти', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_spare_parts },
-  { route: 'cars/spare_parts_structure', name: 'Струтура запчастей', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_spare_parts_structure },
+  { route: 'cars/parts_types', name: 'Типы запчастей', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_parts_types },
+  { route: '/cars/parts/all', name: 'Запчасти', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_parts },
+  { route: 'cars/parts_structure', name: 'Струтура запчастей', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_parts_structure },
   { route: 'cars/catalog', name: 'Каталог', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_catalog },
   { route: 'cars/suppliers', name: 'Поставщики', icon: <SecondLevelIcon />, id: BottomLevelCategory.Cars_suppliers }
 ];

@@ -1,12 +1,12 @@
 import Login from '../pages/Public/Login';
 import Signup from '../pages/Public/Signup';
-import CarsActive from '../pages/Private/SidebarMenu/Cars/Active';
+import CarsActive from '../pages/Private/SidebarMenu/Cars/Active/CarActive';
 import CarsArchive from '../pages/Private/SidebarMenu/Cars/Archive';
 import CarsSuppliers from '../pages/Private/SidebarMenu/Cars/Suppliers';
 import CarsCatalog from '../pages/Private/SidebarMenu/Cars/Catalog';
-import CarsSpareParts from '../pages/Private/SidebarMenu/Cars/SpareParts';
-import CarsSparePartsStructure from '../pages/Private/SidebarMenu/Cars/SparePartsStructure';
-import CarsTypesOfSpareParts from '../pages/Private/SidebarMenu/Cars/TypesOfSpareParts';
+import CarsParts from '../pages/Private/SidebarMenu/Cars/Parts/PartsList';
+import CarsPartsStructure from '../pages/Private/SidebarMenu/Cars/PartsStructure';
+import CarsPartsTypes from '../pages/Private/SidebarMenu/Cars/PartsTypes';
 import WheelsFirst from '../pages/Private/SidebarMenu/Wheels/Test1';
 import WheelsSecond from '../pages/Private/SidebarMenu/Wheels/Test2';
 import WheelsThird from '../pages/Private/SidebarMenu/Wheels/Test3';
@@ -28,9 +28,9 @@ import AccessThird from '../pages/Private/SidebarMenu/Access/Test3';
 import RetailFirst from '../pages/Private/SidebarMenu/Retail/Test1';
 import RetailSecond from '../pages/Private/SidebarMenu/Retail/Test2';
 import RetailThird from '../pages/Private/SidebarMenu/Retail/Test3';
-import CarsCreate from '../pages/Private/SidebarMenu/Cars/Create';
-import CarItem from '../pages/Private/SidebarMenu/Cars/CarItem';
-import CarItemUpdate from '../pages/Private/SidebarMenu/Cars/CarItemUpdate';
+import CarsCreate from '../pages/Private/SidebarMenu/Cars/Active/CarCreate';
+import CarShow from '../pages/Private/SidebarMenu/Cars/Active/CarShow';
+import CarUpdate from '../pages/Private/SidebarMenu/Cars/Active/CarUpdate';
 
 import {RouteNames} from './Routes/Routes.enum';
 import {IRouteProps} from './Routes/Routes.typings';
@@ -43,12 +43,12 @@ export const publicRoutes: IRouteProps[] = [
 export const privateRoutes: IRouteProps[] = [
   {path: RouteNames.CARS_ACTIVE, element: CarsActive},
   {path: RouteNames.CARS_CREATE, element: CarsCreate},
-  {path: RouteNames.CARS_ITEM, element: CarItem},
-  {path: RouteNames.CARS_UPDATE, element: CarItemUpdate},
+  {path: RouteNames.CARS_SHOW, element: CarShow},
+  {path: RouteNames.CARS_UPDATE, element: CarUpdate},
   {path: RouteNames.CARS_ARCHIVE, element: CarsArchive},
-  {path: RouteNames.CARS_TYPES_OF_SPARE_PARTS, element: CarsTypesOfSpareParts},
-  {path: RouteNames.CARS_SPARE_PARTS, element: CarsSpareParts},
-  {path: RouteNames.CARS_SPARE_PARTS_STRUCTURE, element: CarsSparePartsStructure},
+  {path: RouteNames.CARS_PARTS, element: CarsParts},
+  {path: RouteNames.CARS_PARTS_TYPES, element: CarsPartsTypes},
+  {path: RouteNames.CARS_PARTS_STRUCTURE, element: CarsPartsStructure},
   {path: RouteNames.CARS_CATALOG, element: CarsCatalog},
   {path: RouteNames.CARS_SUPPLIERS, element: CarsSuppliers},
   {path: RouteNames.WHEELS1, element: WheelsFirst},

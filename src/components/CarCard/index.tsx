@@ -7,7 +7,7 @@ import CarIcon from '../../assets/icons/Pages/CarsActive.icons/carIcon.png';
 import {useActions} from '../../hooks/useActions';
 import {RouteNames} from '../../routes/Routes/Routes.enum';
 
-import {ArchiveStyled, CarCardStyled, DeleteStyled, PStyled} from './CarCard.styles';
+import {ArchiveStyled, CardStyled, DeleteStyled, PStyled} from './CarCard.styles';
 import {ICarCardProps} from './CarCard.typings';
 
 
@@ -16,14 +16,14 @@ const CarCard: FC<ICarCardProps> = ({cars}) => {
   const {carDelete, carSingle} = useActions();
 
   const showCarHandler = () => {
-    router(`${RouteNames.CARS_ITEM}/${cars.id}`);
+    router(`${RouteNames.CARS_SHOW}/${cars.id}`);
     carSingle(cars.id);
   };
 
   const deleteHandler = () => carDelete(cars.id);
 
   return (
-    <CarCardStyled onClick={showCarHandler}>
+    <CardStyled onClick={showCarHandler}>
       <p>{cars.id}</p>
       <img src={CarIcon} alt="Car Icon"/>
       <div>
@@ -41,7 +41,7 @@ const CarCard: FC<ICarCardProps> = ({cars}) => {
       <DeleteStyled onClick={deleteHandler}>
         <DeleteOutlineIcon />
       </DeleteStyled>
-    </CarCardStyled>
+    </CardStyled>
   );
 };
 

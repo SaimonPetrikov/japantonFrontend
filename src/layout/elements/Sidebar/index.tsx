@@ -1,7 +1,7 @@
 import {Menu} from '../../../components/Menu';
 import SidebarLogo from '../../../assets/icons/Sidebar/Sidebar.icons/logo.png';
 import UserAvatar from '../../../assets/icons/Sidebar/Sidebar.icons/userAvatar.png';
-import {AuthResponse} from '../../../store/action-creators/auth/auth.typings';
+import {AuthResponse} from '../../../store/slices/Auth/authActionCreators/auth.typings';
 import {useTypedSelector} from '../../../hooks/useTypedSelector';
 
 import {SidebarStyled, LogoStyled, UserMail, UserName, UserStyled} from './Sidebar.styles';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CarCardStyled = styled.div`
+export const CardStyled = styled.div`
   display: grid;
   grid-template-columns: 50px 185px 240px 280px 220px 138px 98px 111px;
   padding: 5px 15px;

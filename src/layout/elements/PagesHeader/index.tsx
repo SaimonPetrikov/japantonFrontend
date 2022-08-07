@@ -15,7 +15,7 @@ const PagesHeader = () => {
 
   return (
     <TopStyled>
-      <Search />
+      <Search name={'Введите что Вам нужно'} width={'100%'} />
       <Button sx={{padding: '0 30px', height: '40px', textTransform: 'none'}} onClick={crateHandler} variant="contained" startIcon={<AddIcon />}>Добавить</Button>
       <BalanceStyled>
           1.000.000 $

@@ -1,5 +1,7 @@
-import {ICarProps} from '../../../store/action-creators/cars/cars.typings';
+import {ICarProps} from '../../../store/slices/Cars/Active/activeActionCreators/cars.typings';
 
 export interface ISearchProps {
-  payload: ICarProps[]
+  payload?: ICarProps[],
+  width: string,
+  name: string
 }

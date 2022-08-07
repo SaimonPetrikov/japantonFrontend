@@ -1,5 +1,5 @@
 import $api from '../../http';
-import {CarResponse} from '../../store/action-creators/cars/cars.typings';
+import {CarResponse} from '../../store/slices/Cars/Active/activeActionCreators/cars.typings';
 
 const CarService = {
   all: () => $api.get<CarResponse>('/car'),
