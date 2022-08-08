@@ -1,6 +1,6 @@
 import {Button} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 import Search from '../../../components/Search';
 import PagesLogo from '../../../assets/icons/Header/Header.icons/PagesLogo.png';
@@ -10,8 +10,20 @@ import {BalanceStyled, TopStyled} from './PagesHeader.styles';
 
 const PagesHeader = () => {
   const router = useNavigate();
+  const { pathname } = useLocation();
 
-  const crateHandler = () => router(RouteNames.CARS_CREATE);
+  const crateHandler = () => {
+    switch (pathname) {
+    case RouteNames.CARS_ACTIVE:
+      router(RouteNames.CARS_CREATE);
+      break;
+    case RouteNames.CARS_PARTS:
+      router(RouteNames.CARS_PARTS_CREATE);
+      break;
+    default:
+      return;
+    }
+  };
 
   return (
     <TopStyled>

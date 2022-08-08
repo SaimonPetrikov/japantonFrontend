@@ -21,7 +21,7 @@ import {AuthResponse} from '../../../../../../store/slices/Auth/authActionCreato
 
 import {
   AddBtnStyled,
-  CarsActiveStyled, ChecksStyled, CreateFieldsStyled,
+  ChecksStyled, CreateFieldsStyled, HeaderStyled,
   SelectionStyled, UploadBtnsStyled,
 } from './CarCreate.styles';
 
@@ -153,9 +153,9 @@ const CarCreate = () => {
 
   return (
     <>
-      <CarsActiveStyled>
+      <HeaderStyled>
         <HeaderPage>Активные / Добавить машину</HeaderPage>
-      </CarsActiveStyled>
+      </HeaderStyled>
       <SelectionStyled>
         <Selection name={'Пользователь'} values={cars} width={440} />
         <Selection name={'Менеджер'} values={cars} width={440} />

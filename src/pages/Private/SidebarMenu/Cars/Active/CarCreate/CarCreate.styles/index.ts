@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CarsActiveStyled = styled.div`
+export const HeaderStyled = styled.div`
   width: 100%;
 `;
 

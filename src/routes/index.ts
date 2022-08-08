@@ -31,6 +31,8 @@ import RetailThird from '../pages/Private/SidebarMenu/Retail/Test3';
 import CarsCreate from '../pages/Private/SidebarMenu/Cars/Active/CarCreate';
 import CarShow from '../pages/Private/SidebarMenu/Cars/Active/CarShow';
 import CarUpdate from '../pages/Private/SidebarMenu/Cars/Active/CarUpdate';
+import CarsPartsCreate from '../pages/Private/SidebarMenu/Cars/Parts/PartsCreate';
+import CarsPartsUpdate from '../pages/Private/SidebarMenu/Cars/Parts/PartsUpdate';
 
 import {RouteNames} from './Routes/Routes.enum';
 import {IRouteProps} from './Routes/Routes.typings';
@@ -47,6 +49,8 @@ export const privateRoutes: IRouteProps[] = [
   {path: RouteNames.CARS_UPDATE, element: CarUpdate},
   {path: RouteNames.CARS_ARCHIVE, element: CarsArchive},
   {path: RouteNames.CARS_PARTS, element: CarsParts},
+  {path: RouteNames.CARS_PARTS_CREATE, element: CarsPartsCreate},
+  {path: RouteNames.CARS_PARTS_UPDATE, element: CarsPartsUpdate},
   {path: RouteNames.CARS_PARTS_TYPES, element: CarsPartsTypes},
   {path: RouteNames.CARS_PARTS_STRUCTURE, element: CarsPartsStructure},
   {path: RouteNames.CARS_CATALOG, element: CarsCatalog},

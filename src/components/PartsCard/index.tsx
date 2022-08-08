@@ -1,22 +1,23 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import {FC} from 'react';
-// import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {useActions} from '../../hooks/useActions';
-// import {RouteNames} from '../../routes/Routes/Routes.enum';
+import {RouteNames} from '../../routes/Routes/Routes.enum';
 
 import {BtnsStyled, CardStyled} from './PartsCard.styles';
 import {IPartsCardProps} from './PartsCard.typings';
 
 
 const PartsCard: FC<IPartsCardProps> = ({parts}) => {
-  // const router = useNavigate();
+  const {partsShow} = useActions();
+  const router = useNavigate();
   const {partsDelete} = useActions();
 
   const showCarHandler = () => {
-    // router(`${RouteNames.CARS_PARTS_SHOW}/${parts.id}`);
-    // partsShow(parts.id);
+    router(`${RouteNames.CARS_PARTS_UPDATE}/${parts.id}`);
+    partsShow(parts.id);
   };
 
   const deleteHandler = () => partsDelete(parts.id);

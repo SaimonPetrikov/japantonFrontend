@@ -23,6 +23,7 @@ const CarsPart = () => {
   const {loading, partsList, isChanged} = useTypedSelector(state => state.parts);
 
   useEffect(() => {
+    if (loading) return;
     partsAll();
   }, []);
 
