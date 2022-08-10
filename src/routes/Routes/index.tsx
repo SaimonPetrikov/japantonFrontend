@@ -30,6 +30,11 @@ const AppRouter = () => {
               element={<route.element/>}
               key={route.path}
             />;
+          } else if (route.path === RouteNames.CARS_PARTS_ITEM_UPDATE) {
+            return <Route path={`${route.path}/:id`}
+              element={<route.element/>}
+              key={route.path}
+            />;
           } else {
             return <Route path={route.path}
               element={<route.element/>}

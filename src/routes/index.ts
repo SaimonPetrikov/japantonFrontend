@@ -6,7 +6,7 @@ import CarsSuppliers from '../pages/Private/SidebarMenu/Cars/Suppliers';
 import CarsCatalog from '../pages/Private/SidebarMenu/Cars/Catalog';
 import CarsParts from '../pages/Private/SidebarMenu/Cars/Parts/PartsList';
 import CarsPartsStructure from '../pages/Private/SidebarMenu/Cars/PartsStructure';
-import CarsPartsTypes from '../pages/Private/SidebarMenu/Cars/PartsTypes';
+import CarsPartsItem from '../pages/Private/SidebarMenu/Cars/PartsItem/PartsItemList';
 import WheelsFirst from '../pages/Private/SidebarMenu/Wheels/Test1';
 import WheelsSecond from '../pages/Private/SidebarMenu/Wheels/Test2';
 import WheelsThird from '../pages/Private/SidebarMenu/Wheels/Test3';
@@ -33,6 +33,8 @@ import CarShow from '../pages/Private/SidebarMenu/Cars/Active/CarShow';
 import CarUpdate from '../pages/Private/SidebarMenu/Cars/Active/CarUpdate';
 import CarsPartsCreate from '../pages/Private/SidebarMenu/Cars/Parts/PartsCreate';
 import CarsPartsUpdate from '../pages/Private/SidebarMenu/Cars/Parts/PartsUpdate';
+import CarsPartsItemCreate from '../pages/Private/SidebarMenu/Cars/PartsItem/PartsItemCreate';
+import CarsPartsItemUpdate from '../pages/Private/SidebarMenu/Cars/PartsItem/PartsItemUpdate';
 
 import {RouteNames} from './Routes/Routes.enum';
 import {IRouteProps} from './Routes/Routes.typings';
@@ -51,7 +53,9 @@ export const privateRoutes: IRouteProps[] = [
   {path: RouteNames.CARS_PARTS, element: CarsParts},
   {path: RouteNames.CARS_PARTS_CREATE, element: CarsPartsCreate},
   {path: RouteNames.CARS_PARTS_UPDATE, element: CarsPartsUpdate},
-  {path: RouteNames.CARS_PARTS_TYPES, element: CarsPartsTypes},
+  {path: RouteNames.CARS_PARTS_ITEM, element: CarsPartsItem},
+  {path: RouteNames.CARS_PARTS_ITEM_CREATE, element: CarsPartsItemCreate},
+  {path: RouteNames.CARS_PARTS_ITEM_UPDATE, element: CarsPartsItemUpdate},
   {path: RouteNames.CARS_PARTS_STRUCTURE, element: CarsPartsStructure},
   {path: RouteNames.CARS_CATALOG, element: CarsCatalog},
   {path: RouteNames.CARS_SUPPLIERS, element: CarsSuppliers},

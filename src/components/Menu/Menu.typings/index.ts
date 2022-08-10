@@ -23,9 +23,9 @@ export enum BottomLevelCategory {
   // eslint-disable-next-line no-unused-vars
   Cars_archive,
   // eslint-disable-next-line no-unused-vars
-  Cars_parts_types,
-  // eslint-disable-next-line no-unused-vars
   Cars_parts,
+  // eslint-disable-next-line no-unused-vars
+  Cars_parts_item,
   // eslint-disable-next-line no-unused-vars
   Cars_parts_structure,
   // eslint-disable-next-line no-unused-vars
