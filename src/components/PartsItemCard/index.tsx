@@ -7,31 +7,31 @@ import {useActions} from '../../hooks/useActions';
 import {RouteNames} from '../../routes/Routes/Routes.enum';
 
 import {BtnsStyled, CardStyled} from './PartsItemCard.styles';
-import {IPartsCardProps} from './PartsItemCard.typings';
+import {IPartsItemCardProps} from './PartsItemCard.typings';
 
 
-const PartsItemCard: FC<IPartsCardProps> = ({parts}) => {
-  const {partsShow} = useActions();
+const PartsItemCard: FC<IPartsItemCardProps> = ({partsItem}) => {
+  const {partsItemShow} = useActions();
   const router = useNavigate();
-  const {partsDelete} = useActions();
+  const {partsItemDelete} = useActions();
 
   const showCarHandler = () => {
-    router(`${RouteNames.CARS_PARTS_UPDATE}/${parts.id}`);
-    partsShow(parts.id);
+    router(`${RouteNames.CARS_PARTS_ITEM_UPDATE}/${partsItem.id}`);
+    partsItemShow(partsItem.id);
   };
 
-  const deleteHandler = () => partsDelete(parts.id);
+  const deleteHandler = () => partsItemDelete(partsItem.id);
 
   return (
     <CardStyled onClick={showCarHandler}>
-      <p>{parts.id}</p>
-      <p>{parts.name_ru}</p>
-      <p>{parts.name_en}</p>
-      <p>Air  conditioner</p>
-      <p>{parts.sort}</p>
-      <p>В наличии</p>
-      <p>3 кг</p>
-      <p>2500 JPY</p>
+      <p>{partsItem.id}</p>
+      <p>{partsItem.name_ru}</p>
+      <p>{partsItem.name_en}</p>
+      <p>{partsItem.name_en}</p>
+      <p>{partsItem.sort}</p>
+      <p>{partsItem.code}</p>
+      <p>{partsItem.weight} кг</p>
+      <p>{partsItem.price} JPY</p>
       <BtnsStyled>
         <ArchiveOutlinedIcon />
         <DeleteOutlineIcon onClick={deleteHandler} />

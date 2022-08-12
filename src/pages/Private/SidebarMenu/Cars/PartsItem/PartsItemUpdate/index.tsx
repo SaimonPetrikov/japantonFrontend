@@ -6,40 +6,42 @@ import {ChangeEvent, useState} from 'react';
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import {useActions} from '../../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../../routes/Routes/Routes.enum';
-import {
-  createFields,
-  partsUpdateKeys,
-  updateInitialParts
-} from '../../../../../../assets/helpers/Parts/PartsChange.helpers';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
-import {PartsSingleResponse} from '../../../../../../store/slices/Cars/Parts/partsActionCreators/parts.typings';
+import {
+  PartsItemSingleResponse
+} from '../../../../../../store/slices/Cars/PartsItem/partsItemActionCreators/partsItem.typings';
+import {
+  changeFields,
+  changeInitialPartsItem,
+  partsItemChangeKeys
+} from '../../../../../../assets/helpers/PartsItem/PartsItemChange.helpers';
 
 import {CreateFieldsStyled, HeaderStyled, BtnsStyled} from './PartsItemUpdate.styles';
 
 
 const CarsPartsItemUpdate = () => {
-  const {partsSingle, loading} = useTypedSelector(state => state.parts);
-  const {partsUpdate, partsDelete} = useActions();
+  const {partsItemSingle, loadingItem} = useTypedSelector(state => state.partsItem);
+  const {partsItemUpdate, partsItemDelete} = useActions();
   const [isInit, setIsInit] = useState(true);
   const router = useNavigate();
-  const [changeObj, setChangeObj] = useState(updateInitialParts);
+  const [changeObj, setChangeObj] = useState(changeInitialPartsItem);
 
   const updateHandler = () => {
     console.log('createObj ===', changeObj);
-    partsUpdate(changeObj);
-    router(RouteNames.CARS_PARTS);
+    partsItemUpdate(changeObj);
+    router(RouteNames.CARS_PARTS_ITEM);
   };
 
   const deleteHandler = () => {
-    partsDelete((partsSingle as PartsSingleResponse).part.id);
-    router(RouteNames.CARS_PARTS);
+    partsItemDelete((partsItemSingle as PartsItemSingleResponse).partItem.id);
+    router(RouteNames.CARS_PARTS_ITEM);
   };
 
   const setCurrVal = val => {
     if (isInit) {
-      updateInitialParts.id = (partsSingle as PartsSingleResponse).part.id;
-      partsUpdateKeys.map(elem => updateInitialParts.updateData[elem] = partsSingle?.part[elem]);
-      setChangeObj(updateInitialParts);
+      changeInitialPartsItem.id = (partsItemSingle as PartsItemSingleResponse).partItem.id;
+      partsItemChangeKeys.map(elem => changeInitialPartsItem.updateData[elem] = partsItemSingle?.partItem[elem]);
+      setChangeObj(changeInitialPartsItem);
       setIsInit(false);
     }
 
@@ -49,7 +51,7 @@ const CarsPartsItemUpdate = () => {
     case 'Введите наименование (En)':
       return changeObj.updateData.name_en;
     case 'Расположение':
-      return changeObj.updateData.sticker_fields;
+      return changeObj.updateData.code;
     case 'Код':
       return changeObj.updateData.sort;
     default:
@@ -84,7 +86,7 @@ const CarsPartsItemUpdate = () => {
         updateData: {
           ...prevState.updateData,
           // eslint-disable-next-line camelcase
-          sticker_fields: event.target.value
+          code: event.target.value
         }
       }));
     case 'Код':
@@ -102,13 +104,14 @@ const CarsPartsItemUpdate = () => {
   };
 
   return (
-    loading ? <h1>Загрузка...</h1> :
+    loadingItem ? <h1>Загрузка...</h1> :
       <>
         <HeaderStyled>
-          <HeaderPage>Запчасти / Редактировать / Запчасть: {(partsSingle as PartsSingleResponse).part.id}</HeaderPage>
+          {/* eslint-disable-next-line max-len */}
+          <HeaderPage>Запчасти / Редактировать / Запчасть: {(partsItemSingle as PartsItemSingleResponse).partItem.id}</HeaderPage>
         </HeaderStyled>
         <CreateFieldsStyled>
-          {createFields.map(e => (
+          {changeFields.map(e => (
             <TextField id={e} label={e} variant="outlined" key={e} sx={{width: '1337px'}} value={setCurrVal(e)} onChange={handleChange} />
           ))}
         </CreateFieldsStyled>

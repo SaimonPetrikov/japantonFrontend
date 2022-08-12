@@ -19,17 +19,18 @@ import {
 } from './PartsItemList.styles';
 
 const CarsPartsItem = () => {
-  const {partsAll} = useActions();
-  const {loading, partsList, isChanged} = useTypedSelector(state => state.parts);
+  const {partsItemAll} = useActions();
+  const {loadingItem, partsItemList, isItemChanged} = useTypedSelector(state => state.partsItem);
 
   useEffect(() => {
-    if (loading) return;
-    partsAll();
+    if (loadingItem) return;
+    partsItemAll();
   }, []);
 
   useEffect(() => {
-    if (isChanged) partsAll();
-  }, [isChanged]);
+    console.log(isItemChanged);
+    if (isItemChanged) partsItemAll();
+  }, [isItemChanged]);
 
   // useEffect(() => {
   //   if (loading || !data) return;
@@ -39,18 +40,18 @@ const CarsPartsItem = () => {
   const nextHandler = () => null;
 
   const itemsList = () => {
-    if (!partsList) return;
+    if (!partsItemList) return;
 
-    if (partsList.part.length !== 0) {
+    if (partsItemList.partItem.length !== 0) {
       return (
         <InfiniteScroll
-          dataLength={partsList.part.length}
+          dataLength={partsItemList.partItem.length}
           next={nextHandler}
           hasMore={true}
           loader={<h2>Loading...</h2>}
         >
-          {partsList.part.map((elem, index) => (
-            <PartsItemCard key={elem.id} parts={partsList.part[index]}/>
+          {partsItemList.partItem.map((elem, index) => (
+            <PartsItemCard key={elem.id} partsItem={partsItemList?.partItem[index]}/>
           ))}
         </InfiniteScroll>);
     } else {
@@ -86,7 +87,7 @@ const CarsPartsItem = () => {
             </ItemCardStyled>
           ))}
         </ItemsHeadStyled>
-        {loading ? <h1>Загрузка...</h1> :
+        {loadingItem ? <h1>Загрузка...</h1> :
           itemsList()
         }
       </ItemStyled>

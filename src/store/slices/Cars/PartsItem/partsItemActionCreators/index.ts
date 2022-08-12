@@ -27,6 +27,7 @@ export const partsItemCreate = (data: PartsItemData) => {
       dispatch({type: PartsItemActionTypes.PARTS_ITEM_START});
       const response = await PartsItemService.create(data);
       dispatch({type: PartsItemActionTypes.PARTS_ITEM_SINGLE, payload: response.data});
+      dispatch({type: PartsItemActionTypes.PARTS_ITEM_CHANGES});
       dispatch({type: PartsItemActionTypes.PARTS_ITEM_FINISH});
       console.log(response.data);
     } catch (e) {

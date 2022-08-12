@@ -18,17 +18,17 @@ export interface IPartsItemProps {
 
 export interface PartsItemAllResponse {
   message: string,
-  part: IPartsItemProps[]
+  partItem: IPartsItemProps[]
 }
 
 export interface PartsItemSingleResponse {
   message: string,
-  part: IPartsItemProps
+  partItem: IPartsItemProps
 }
 
 export interface PartsItemChangedResponse {
   message: string,
-  part: boolean
+  partItem: boolean
 }
 
 export interface PartsItemState {
@@ -41,10 +41,17 @@ export interface PartsItemState {
 }
 
 export interface PartsItemHandle {
+  parent_id: number,
   name_ru: string,
   name_en: string,
-  sticker_fields: string,
-  sort: number
+  name_jp: string,
+  type: number,
+  weight: number,
+  price: number,
+  sort: number,
+  car_type: number,
+  options: string,
+  code: string
 }
 
 export interface PartsItemUpdateData {
@@ -85,7 +92,7 @@ interface PartsItemSingleAction {
 
 interface PartsItemChangesAction {
   type: PartsItemActionTypes.PARTS_ITEM_CHANGES;
-  payload: PartsItemChangedResponse;
+  payload?: PartsItemChangedResponse;
 }
 
 interface PartsItemFinishAction {

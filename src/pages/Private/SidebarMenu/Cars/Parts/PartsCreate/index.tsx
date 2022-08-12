@@ -72,7 +72,7 @@ const CarsPartsCreate = () => {
   return (
     <>
       <HeaderStyled>
-        <HeaderPage>Запчасти / Добавить запчасть</HeaderPage>
+        <HeaderPage>Типы запчастей / Добавить тип запчасти</HeaderPage>
       </HeaderStyled>
       <CreateFieldsStyled>
         {createFields.map(e => (

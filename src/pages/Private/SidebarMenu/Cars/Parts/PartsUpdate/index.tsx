@@ -105,7 +105,8 @@ const CarsPartsUpdate = () => {
     loading ? <h1>Загрузка...</h1> :
       <>
         <HeaderStyled>
-          <HeaderPage>Запчасти / Редактировать / Запчасть: {(partsSingle as PartsSingleResponse).part.id}</HeaderPage>
+          {/* eslint-disable-next-line max-len */}
+          <HeaderPage>Типы запчастей / Редактировать / {(partsSingle as PartsSingleResponse).part.name_ru}</HeaderPage>
         </HeaderStyled>
         <CreateFieldsStyled>
           {createFields.map(e => (

@@ -6,19 +6,19 @@ import {ChangeEvent, useState} from 'react';
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import {useActions} from '../../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../../routes/Routes/Routes.enum';
-import {createFields, createInitial} from '../../../../../../assets/helpers/PartsItem/PartsItemChange.helpers';
+import {changeFields, changeInitial} from '../../../../../../assets/helpers/PartsItem/PartsItemChange.helpers';
 
 import {AddBtnStyled, CreateFieldsStyled, HeaderStyled} from './PartsItemCreate.styles';
 
 const CarsPartsItemCreate = () => {
-  const {partsCreate} = useActions();
+  const {partsItemCreate} = useActions();
   const router = useNavigate();
-  const [createObj, setCreateObj] = useState(createInitial);
+  const [createObj, setCreateObj] = useState(changeInitial);
 
   const addHandler = () => {
     console.log('createObj ===', createObj);
-    partsCreate(createObj);
-    router(RouteNames.CARS_PARTS);
+    partsItemCreate(createObj);
+    router(RouteNames.CARS_PARTS_ITEM);
   };
 
   const setCurrVal = val => {
@@ -28,7 +28,7 @@ const CarsPartsItemCreate = () => {
     case 'Введите наименование (En)':
       return createObj.name_en;
     case 'Расположение':
-      return createObj.sticker_fields;
+      return createObj.code;
     case 'Код':
       return createObj.sort;
     default:
@@ -55,7 +55,7 @@ const CarsPartsItemCreate = () => {
       return setCreateObj(prevState => ({
         ...prevState,
         // eslint-disable-next-line camelcase
-        sticker_fields: event.target.value
+        code: event.target.value
       }));
     case 'Код':
       return setCreateObj(prevState => ({
@@ -74,7 +74,7 @@ const CarsPartsItemCreate = () => {
         <HeaderPage>Запчасти / Добавить запчасть</HeaderPage>
       </HeaderStyled>
       <CreateFieldsStyled>
-        {createFields.map(e => (
+        {changeFields.map(e => (
           <TextField id={e} label={e} variant="outlined" key={e} sx={{width: '1337px'}} value={setCurrVal(e)} onChange={handleChange} />
         ))}
       </CreateFieldsStyled>

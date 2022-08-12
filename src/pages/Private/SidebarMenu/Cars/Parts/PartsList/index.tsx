@@ -2,10 +2,8 @@ import {useEffect} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import HeaderPage from '../../../../../../ui/HeaderPage';
-import Selection from '../../../../../../components/Select';
-import {cars} from '../../../../../../assets/helpers/Cars/CarsActive.helpers';
 import Search from '../../../../../../components/Search';
-import {SparePartsHeaders, SparePartsSearchHeaders} from '../../../../../../assets/helpers/Parts/PartsList.helpers';
+import {PartsHeaders, PartsSearchHeaders} from '../../../../../../assets/helpers/Parts/PartsList.helpers';
 import {useActions} from '../../../../../../hooks/useActions';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
 import PartsCard from '../../../../../../components/PartsCard';
@@ -63,21 +61,15 @@ const CarsPart = () => {
   return (
     <>
       <HeaderStyled>
-        <HeaderPage>Запчасти</HeaderPage>
+        <HeaderPage>Типы запчастей</HeaderPage>
       </HeaderStyled>
       <SelectionStyled>
-        <Search name={SparePartsSearchHeaders[0]} width={'251px'} />
-        <Search name={SparePartsSearchHeaders[1]} width={'219px'} />
-        <Search name={SparePartsSearchHeaders[2]} width={'216px'} />
-        <Search name={SparePartsSearchHeaders[3]} width={'75px'} />
-        <Selection name={SparePartsSearchHeaders[4]} values={cars} width={153} />
-        <Search name={SparePartsSearchHeaders[5]} width={'75px'} />
-        <Search name={SparePartsSearchHeaders[6]} width={'75px'} />
-        <Selection name={SparePartsSearchHeaders[7]} values={cars} width={130} />
+        <Search name={PartsSearchHeaders[0]} width={'490px'} />
+        <Search name={PartsSearchHeaders[1]} width={'490px'} />
       </SelectionStyled>
       <ItemStyled>
         <ItemsHeadStyled>
-          {SparePartsHeaders.map((elem, index) => (
+          {PartsHeaders.map((elem, index) => (
             <ItemCardStyled key={elem}>
               {(index !== 0) && <SeparateLineStyled></SeparateLineStyled>}
               <HeadersStyled>
