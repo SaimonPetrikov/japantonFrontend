@@ -10,7 +10,7 @@ import {
   createFields,
   partsUpdateKeys,
   updateInitialParts
-} from '../../../../../../assets/helpers/Parts/PartsChange.helpers';
+} from '../../../../../../assets/helpers/Cars/Parts/PartsChange.helpers';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
 import {PartsSingleResponse} from '../../../../../../store/slices/Cars/Parts/partsActionCreators/parts.typings';
 

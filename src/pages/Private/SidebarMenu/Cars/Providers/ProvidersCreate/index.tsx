@@ -6,32 +6,30 @@ import {ChangeEvent, useState} from 'react';
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import {useActions} from '../../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../../routes/Routes/Routes.enum';
-import {createFields, createInitial} from '../../../../../../assets/helpers/Cars/Parts/PartsChange.helpers';
+import {createFields, createInitial} from '../../../../../../assets/helpers/Cars/Providers/ProvidersChange.helpers';
 
-import {AddBtnStyled, CreateFieldsStyled, HeaderStyled} from './PartsCreate.styles';
+import {AddBtnStyled, CreateFieldsStyled, HeaderStyled} from './ProvidersCreate.styles';
 
 
-const CarsPartsCreate = () => {
-  const {partsCreate} = useActions();
+const CarsProvidersCreate = () => {
+  const {providersCreate} = useActions();
   const router = useNavigate();
   const [createObj, setCreateObj] = useState(createInitial);
 
   const addHandler = () => {
     console.log('createObj ===', createObj);
-    partsCreate(createObj);
-    router(RouteNames.CARS_PARTS);
+    providersCreate(createObj);
+    router(RouteNames.CARS_PROVIDERS);
   };
 
   const setCurrVal = val => {
     switch (val) {
-    case 'Введите наименование (Ru)':
-      return createObj.name_ru;
-    case 'Введите наименование (En)':
-      return createObj.name_en;
-    case 'Расположение':
-      return createObj.sticker_fields;
-    case 'Код':
-      return createObj.sort;
+    case 'Название':
+      return createObj.name;
+    case 'E-mail':
+      return createObj.email;
+    case 'Список машин':
+      return createObj.percent;
     default:
       return;
     }
@@ -39,30 +37,20 @@ const CarsPartsCreate = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     switch (event.target.id) {
-    case 'Введите наименование (Ru)':
-      // eslint-disable-next-line camelcase
+    case 'Название':
       return setCreateObj(prevState => ({
         ...prevState,
-        // eslint-disable-next-line camelcase
-        name_ru: event.target.value
+        name: event.target.value
       }));
-    case 'Введите наименование (En)':
+    case 'E-mail':
       return setCreateObj(prevState => ({
         ...prevState,
-        // eslint-disable-next-line camelcase
-        name_en: event.target.value
+        email: event.target.value
       }));
-    case 'Расположение':
+    case 'Список машин':
       return setCreateObj(prevState => ({
         ...prevState,
-        // eslint-disable-next-line camelcase
-        sticker_fields: event.target.value
-      }));
-    case 'Код':
-      return setCreateObj(prevState => ({
-        ...prevState,
-        // eslint-disable-next-line camelcase
-        sort: +event.target.value
+        percent: +event.target.value
       }));
     default:
       return;
@@ -72,7 +60,7 @@ const CarsPartsCreate = () => {
   return (
     <>
       <HeaderStyled>
-        <HeaderPage>Типы запчастей / Добавить тип запчасти</HeaderPage>
+        <HeaderPage>Поставщики / Добавить поставщика</HeaderPage>
       </HeaderStyled>
       <CreateFieldsStyled>
         {createFields.map(e => (
@@ -86,4 +74,4 @@ const CarsPartsCreate = () => {
   );
 };
 
-export default CarsPartsCreate;
+export default CarsProvidersCreate;

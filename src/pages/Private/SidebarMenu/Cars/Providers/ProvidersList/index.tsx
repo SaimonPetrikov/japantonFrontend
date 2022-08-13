@@ -3,10 +3,15 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import Search from '../../../../../../components/Search';
-import {PartsHeaders, PartsSearchHeaders} from '../../../../../../assets/helpers/Cars/Parts/PartsList.helpers';
 import {useActions} from '../../../../../../hooks/useActions';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
-import PartsCard from '../../../../../../components/PartsCard';
+import {
+  ProvidersHeaders,
+  ProvidersSearchHeaders, ProvidersSelection
+} from '../../../../../../assets/helpers/Cars/Providers/ParovidersList.helpers';
+import {cars} from '../../../../../../assets/helpers/Cars/Active/CarsActive.helpers';
+import Selection from '../../../../../../components/Select';
+import ProvidersCard from '../../../../../../components/ProvidersCard';
 
 import {
   HeadersStyled,
@@ -14,20 +19,20 @@ import {
   ItemsHeadStyled,
   ItemStyled,
   SelectionStyled, SeparateLineStyled
-} from './PartsList.styles';
+} from './ProvidersList.styles';
 
-const CarsPart = () => {
-  const {partsAll} = useActions();
-  const {loading, partsList, isChanged} = useTypedSelector(state => state.parts);
+const CarsProvidersList = () => {
+  const {providersAll} = useActions();
+  const {loadingProviders, providersList, isProvidersChanged} = useTypedSelector(state => state.providers);
 
   useEffect(() => {
-    if (loading || partsList) return;
-    partsAll();
+    if (loadingProviders || providersList) return;
+    providersAll();
   }, []);
 
   useEffect(() => {
-    if (isChanged) partsAll();
-  }, [isChanged]);
+    if (isProvidersChanged) providersAll();
+  }, [isProvidersChanged]);
 
   // useEffect(() => {
   //   if (loading || !data) return;
@@ -37,18 +42,17 @@ const CarsPart = () => {
   const nextHandler = () => null;
 
   const itemsList = () => {
-    if (!partsList) return;
-
-    if (partsList.part.length !== 0) {
+    if (!providersList) return;
+    if (providersList.provider.length !== 0) {
       return (
         <InfiniteScroll
-          dataLength={partsList.part.length}
+          dataLength={providersList.provider.length}
           next={nextHandler}
           hasMore={true}
           loader={<h2>Loading...</h2>}
         >
-          {partsList.part.map((elem, index) => (
-            <PartsCard key={elem.id} parts={partsList.part[index]}/>
+          {providersList.provider.map((elem, index) => (
+            <ProvidersCard key={elem.id} providers={providersList.provider[index]}/>
           ))}
         </InfiniteScroll>);
     } else {
@@ -61,15 +65,15 @@ const CarsPart = () => {
   return (
     <>
       <HeaderStyled>
-        <HeaderPage>Типы запчастей</HeaderPage>
+        <HeaderPage>Поставщики</HeaderPage>
       </HeaderStyled>
       <SelectionStyled>
-        <Search name={PartsSearchHeaders[0]} width={'490px'} />
-        <Search name={PartsSearchHeaders[1]} width={'490px'} />
+        <Search name={ProvidersSearchHeaders} width={'962px'} />
+        <Selection name={ProvidersSelection} values={cars} width={130} />
       </SelectionStyled>
       <ItemStyled>
         <ItemsHeadStyled>
-          {PartsHeaders.map((elem, index) => (
+          {ProvidersHeaders.map((elem, index) => (
             <ItemCardStyled key={elem}>
               {(index !== 0) && <SeparateLineStyled></SeparateLineStyled>}
               <HeadersStyled>
@@ -78,7 +82,7 @@ const CarsPart = () => {
             </ItemCardStyled>
           ))}
         </ItemsHeadStyled>
-        {loading ? <h1>Загрузка...</h1> :
+        {loadingProviders ? <h1>Загрузка...</h1> :
           itemsList()
         }
       </ItemStyled>
@@ -86,4 +90,4 @@ const CarsPart = () => {
   );
 };
 
-export default CarsPart;
+export default CarsProvidersList;

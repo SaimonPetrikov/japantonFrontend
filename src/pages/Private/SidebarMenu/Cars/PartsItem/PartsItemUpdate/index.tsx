@@ -14,7 +14,7 @@ import {
   changeFields,
   changeInitialPartsItem,
   partsItemChangeKeys
-} from '../../../../../../assets/helpers/PartsItem/PartsItemChange.helpers';
+} from '../../../../../../assets/helpers/Cars/PartsItem/PartsItemChange.helpers';
 
 import {CreateFieldsStyled, HeaderStyled, BtnsStyled} from './PartsItemUpdate.styles';
 

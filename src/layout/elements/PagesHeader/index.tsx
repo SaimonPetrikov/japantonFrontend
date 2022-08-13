@@ -23,6 +23,9 @@ const PagesHeader = () => {
     case RouteNames.CARS_PARTS_ITEM:
       router(RouteNames.CARS_PARTS_ITEM_CREATE);
       break;
+    case RouteNames.CARS_PROVIDERS:
+      router(RouteNames.CARS_PROVIDERS_CREATE);
+      break;
     default:
       return;
     }

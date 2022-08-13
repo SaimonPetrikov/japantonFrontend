@@ -6,7 +6,7 @@ import {ChangeEvent, useState} from 'react';
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import {useActions} from '../../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../../routes/Routes/Routes.enum';
-import {changeFields, changeInitial} from '../../../../../../assets/helpers/PartsItem/PartsItemChange.helpers';
+import {changeFields, changeInitial} from '../../../../../../assets/helpers/Cars/PartsItem/PartsItemChange.helpers';
 
 import {AddBtnStyled, CreateFieldsStyled, HeaderStyled} from './PartsItemCreate.styles';
 

@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import Selection from '../../../../../../components/Select';
 import CarCard from '../../../../../../components/CarCard';
-import {cars, carsHeaders} from '../../../../../../assets/helpers/Cars/CarsActive.helpers';
+import {cars, carsHeaders} from '../../../../../../assets/helpers/Cars/Active/CarsActive.helpers';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
 import {CarResponse, ICarProps} from '../../../../../../store/slices/Cars/Active/activeActionCreators/cars.typings';
 import {useActions} from '../../../../../../hooks/useActions';

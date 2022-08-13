@@ -30,7 +30,11 @@ export enum RouteNames {
   // eslint-disable-next-line no-unused-vars
   CARS_CATALOG = '/cars/catalog',
   // eslint-disable-next-line no-unused-vars
-  CARS_SUPPLIERS = '/cars/suppliers',
+  CARS_PROVIDERS = '/cars/providers/all',
+  // eslint-disable-next-line no-unused-vars
+  CARS_PROVIDERS_CREATE = '/cars/providers/create',
+  // eslint-disable-next-line no-unused-vars
+  CARS_PROVIDERS_UPDATE = '/cars/providers/update',
   // eslint-disable-next-line no-unused-vars
   WHEELS1 = '/wheels/test_wheels1',
   // eslint-disable-next-line no-unused-vars

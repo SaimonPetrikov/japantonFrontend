@@ -8,7 +8,7 @@ import HeaderPage from '../../../../../../ui/HeaderPage';
 import {useActions} from '../../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../../routes/Routes/Routes.enum';
 import {CarResponse, ICarProps} from '../../../../../../store/slices/Cars/Active/activeActionCreators/cars.typings';
-import {initialUpdateObj, updateHeaders, updateKeys} from '../../../../../../assets/helpers/Cars/CarsUpdate.helpers';
+import {initialUpdateObj, updateHeaders, updateKeys} from '../../../../../../assets/helpers/Cars/Active/CarsUpdate.helpers';
 
 import {BtnsStyled, CarItemsStyled} from './CarUpdate.styles';
 

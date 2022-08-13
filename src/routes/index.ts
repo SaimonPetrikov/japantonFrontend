@@ -2,7 +2,7 @@ import Login from '../pages/Public/Login';
 import Signup from '../pages/Public/Signup';
 import CarsActive from '../pages/Private/SidebarMenu/Cars/Active/CarActive';
 import CarsArchive from '../pages/Private/SidebarMenu/Cars/Archive';
-import CarsSuppliers from '../pages/Private/SidebarMenu/Cars/Suppliers';
+import CarsProviders from '../pages/Private/SidebarMenu/Cars/Providers/ProvidersList';
 import CarsCatalog from '../pages/Private/SidebarMenu/Cars/Catalog';
 import CarsParts from '../pages/Private/SidebarMenu/Cars/Parts/PartsList';
 import CarsPartsStructure from '../pages/Private/SidebarMenu/Cars/PartsStructure';
@@ -35,6 +35,8 @@ import CarsPartsCreate from '../pages/Private/SidebarMenu/Cars/Parts/PartsCreate
 import CarsPartsUpdate from '../pages/Private/SidebarMenu/Cars/Parts/PartsUpdate';
 import CarsPartsItemCreate from '../pages/Private/SidebarMenu/Cars/PartsItem/PartsItemCreate';
 import CarsPartsItemUpdate from '../pages/Private/SidebarMenu/Cars/PartsItem/PartsItemUpdate';
+import CarsProvidersCreate from '../pages/Private/SidebarMenu/Cars/Providers/ProvidersCreate';
+import CarsProvidersUpdate from '../pages/Private/SidebarMenu/Cars/Providers/ProvidersUpdate';
 
 import {RouteNames} from './Routes/Routes.enum';
 import {IRouteProps} from './Routes/Routes.typings';
@@ -58,7 +60,9 @@ export const privateRoutes: IRouteProps[] = [
   {path: RouteNames.CARS_PARTS_ITEM_UPDATE, element: CarsPartsItemUpdate},
   {path: RouteNames.CARS_PARTS_STRUCTURE, element: CarsPartsStructure},
   {path: RouteNames.CARS_CATALOG, element: CarsCatalog},
-  {path: RouteNames.CARS_SUPPLIERS, element: CarsSuppliers},
+  {path: RouteNames.CARS_PROVIDERS, element: CarsProviders},
+  {path: RouteNames.CARS_PROVIDERS_CREATE, element: CarsProvidersCreate},
+  {path: RouteNames.CARS_PROVIDERS_UPDATE, element: CarsProvidersUpdate},
   {path: RouteNames.WHEELS1, element: WheelsFirst},
   {path: RouteNames.WHEELS2, element: WheelsSecond},
   {path: RouteNames.WHEELS3, element: WheelsThird},

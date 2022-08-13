@@ -6,7 +6,7 @@ import {ChangeEvent, useEffect, useState} from 'react';
 
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import Selection from '../../../../../../components/Select';
-import {cars} from '../../../../../../assets/helpers/Cars/CarsActive.helpers';
+import {cars} from '../../../../../../assets/helpers/Cars/Active/CarsActive.helpers';
 import {useActions} from '../../../../../../hooks/useActions';
 import {RouteNames} from '../../../../../../routes/Routes/Routes.enum';
 import {checkStyles} from '../CarActive/CarActive.styles';
@@ -15,7 +15,7 @@ import {
   createCarObj,
   createFields,
   uploadBtns
-} from '../../../../../../assets/helpers/Cars/CarsCreate.helpers';
+} from '../../../../../../assets/helpers/Cars/Active/CarsCreate.helpers';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
 import {AuthResponse} from '../../../../../../store/slices/Auth/authActionCreators/auth.typings';
 

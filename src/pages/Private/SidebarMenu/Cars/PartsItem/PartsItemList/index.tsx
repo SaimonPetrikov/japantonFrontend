@@ -3,12 +3,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import HeaderPage from '../../../../../../ui/HeaderPage';
 import Search from '../../../../../../components/Search';
-import {SparePartsHeaders, SparePartsSearchHeaders} from '../../../../../../assets/helpers/PartsItem/PartsItemList.helpers';
+import {PartsItemHeaders, PartsItemSearchHeaders} from '../../../../../../assets/helpers/Cars/PartsItem/PartsItemList.helpers';
 import {useActions} from '../../../../../../hooks/useActions';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
 import PartsItemCard from '../../../../../../components/PartsItemCard';
 import Selection from '../../../../../../components/Select';
-import {cars} from '../../../../../../assets/helpers/Cars/CarsActive.helpers';
+import {cars} from '../../../../../../assets/helpers/Cars/Active/CarsActive.helpers';
 
 import {
   HeadersStyled,
@@ -23,12 +23,11 @@ const CarsPartsItem = () => {
   const {loadingItem, partsItemList, isItemChanged} = useTypedSelector(state => state.partsItem);
 
   useEffect(() => {
-    if (loadingItem) return;
+    if (loadingItem || partsItemList) return;
     partsItemAll();
   }, []);
 
   useEffect(() => {
-    console.log(isItemChanged);
     if (isItemChanged) partsItemAll();
   }, [isItemChanged]);
 
@@ -67,18 +66,15 @@ const CarsPartsItem = () => {
         <HeaderPage>Запчасти</HeaderPage>
       </HeaderStyled>
       <SelectionStyled>
-        <Search name={SparePartsSearchHeaders[0]} width={'251px'} />
-        <Search name={SparePartsSearchHeaders[1]} width={'219px'} />
-        <Search name={SparePartsSearchHeaders[2]} width={'216px'} />
-        <Search name={SparePartsSearchHeaders[3]} width={'75px'} />
-        <Selection name={SparePartsSearchHeaders[4]} values={cars} width={153} />
-        <Search name={SparePartsSearchHeaders[5]} width={'75px'} />
-        <Search name={SparePartsSearchHeaders[6]} width={'75px'} />
-        <Selection name={SparePartsSearchHeaders[7]} values={cars} width={130} />
+        {PartsItemSearchHeaders.map(elem => (
+          (elem.type === 'selection') ?
+            <Selection key={elem.name} name={elem.name} values={cars} width={elem.width as number} />            :
+            <Search key={elem.name} name={elem.name} width={elem.width as string} />
+        ))}
       </SelectionStyled>
       <ItemStyled>
         <ItemsHeadStyled>
-          {SparePartsHeaders.map((elem, index) => (
+          {PartsItemHeaders.map((elem, index) => (
             <ItemCardStyled key={elem}>
               {(index !== 0) && <SeparateLineStyled></SeparateLineStyled>}
               <HeadersStyled>
