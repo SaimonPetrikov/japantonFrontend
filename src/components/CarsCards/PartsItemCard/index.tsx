@@ -1,12 +1,12 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {useActions} from '../../hooks/useActions';
-import {RouteNames} from '../../routes/Routes/Routes.enum';
+import {useActions} from '../../../hooks/useActions';
+import {RouteNames} from '../../../routes/Routes/Routes.enum';
+import {DeleteStyled, WrapStyled } from '../CarsCards.styles';
 
-import {BtnsStyled, CardStyled} from './PartsItemCard.styles';
+import {CardStyled} from './PartsItemCard.styles';
 import {IPartsItemCardProps} from './PartsItemCard.typings';
 
 
@@ -23,20 +23,21 @@ const PartsItemCard: FC<IPartsItemCardProps> = ({partsItem}) => {
   const deleteHandler = () => partsItemDelete(partsItem.id);
 
   return (
-    <CardStyled onClick={showCarHandler}>
-      <p>{partsItem.id}</p>
-      <p>{partsItem.name_ru}</p>
-      <p>{partsItem.name_en}</p>
-      <p>{partsItem.name_en}</p>
-      <p>{partsItem.sort}</p>
-      <p>{partsItem.code}</p>
-      <p>{partsItem.weight} кг</p>
-      <p>{partsItem.price} JPY</p>
-      <BtnsStyled>
-        <ArchiveOutlinedIcon />
+    <WrapStyled>
+      <CardStyled onClick={showCarHandler}>
+        <p>{partsItem.id}</p>
+        <p>{partsItem.name_ru}</p>
+        <p>{partsItem.name_en}</p>
+        <p>{partsItem.name_en}</p>
+        <p>{partsItem.sort}</p>
+        <p>{partsItem.code}</p>
+        <p>{partsItem.weight} кг</p>
+        <p>{partsItem.price} JPY</p>
+      </CardStyled>
+      <DeleteStyled>
         <DeleteOutlineIcon onClick={deleteHandler} />
-      </BtnsStyled>
-    </CardStyled>
+      </DeleteStyled>
+    </WrapStyled>
   );
 };
 

@@ -7,6 +7,7 @@ const CarService = {
   create: data => $api.post<CarResponse>('/car/create', data),
   update: data => $api.post<CarResponse>(`/car/update/${data.id}`, data.updateData),
   delete: data => $api.get<CarResponse>(`/car/delete/${data}`),
+  archive: data => $api.post<CarResponse>(`/car/archive/${data.id}`, data.archiveData),
 };
 
 export default CarService;

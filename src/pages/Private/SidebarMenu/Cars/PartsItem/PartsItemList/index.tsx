@@ -6,7 +6,7 @@ import Search from '../../../../../../components/Search';
 import {PartsItemHeaders, PartsItemSearchHeaders} from '../../../../../../assets/helpers/Cars/PartsItem/PartsItemList.helpers';
 import {useActions} from '../../../../../../hooks/useActions';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
-import PartsItemCard from '../../../../../../components/PartsItemCard';
+import PartsItemCard from '../../../../../../components/CarsCards/PartsItemCard';
 import Selection from '../../../../../../components/Select';
 import {cars} from '../../../../../../assets/helpers/Cars/Active/CarsActive.helpers';
 

@@ -15,7 +15,7 @@ export const ItemStyled = styled.div`
 
 export const ItemsHeadStyled = styled.div`
   display: grid;
-  grid-template-columns: 69px 461px 459px 138px 98px 111px;
+  grid-template-columns: 69px 461px 459px 230px auto;
   background: rgba(69, 158, 216, 0.1);
   border-radius: 4px 4px 0 0;
   padding: 5px 15px;

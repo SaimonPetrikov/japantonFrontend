@@ -11,7 +11,7 @@ import {
 } from '../../../../../../assets/helpers/Cars/Providers/ParovidersList.helpers';
 import {cars} from '../../../../../../assets/helpers/Cars/Active/CarsActive.helpers';
 import Selection from '../../../../../../components/Select';
-import ProvidersCard from '../../../../../../components/ProvidersCard';
+import ProvidersCard from '../../../../../../components/CarsCards/ProvidersCard';
 
 import {
   HeadersStyled,

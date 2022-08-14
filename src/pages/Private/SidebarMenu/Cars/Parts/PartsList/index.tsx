@@ -6,7 +6,7 @@ import Search from '../../../../../../components/Search';
 import {PartsHeaders, PartsSearchHeaders} from '../../../../../../assets/helpers/Cars/Parts/PartsList.helpers';
 import {useActions} from '../../../../../../hooks/useActions';
 import {useTypedSelector} from '../../../../../../hooks/useTypedSelector';
-import PartsCard from '../../../../../../components/PartsCard';
+import PartsCard from '../../../../../../components/CarsCards/PartsCard';
 
 import {
   HeadersStyled,

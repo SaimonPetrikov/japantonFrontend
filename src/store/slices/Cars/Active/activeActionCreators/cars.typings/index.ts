@@ -74,33 +74,42 @@ export interface CarItem {
   provider_engine_price?: number
 }
 
-export interface updateCar {
-  taillight: string,
-  marriage: string,
-  notes: string,
-  notes_zibiz: string,
-  images: string,
-  videos: string,
-  user_id: number,
-  body_no: string,
-  engine_no: string,
-  in_the_way: number,
-  retail: number,
-  small: number,
-  archive: number,
-  sticker_notes: string,
-  manager_id: number,
-  documents: string,
-  provider_id: number,
-  provider_engine_price: number
+// export interface updateCar {
+//   taillight: string,
+//   marriage: string,
+//   notes: string,
+//   notes_zibiz: string,
+//   images: string,
+//   videos: string,
+//   user_id: number,
+//   body_no: string,
+//   engine_no: string,
+//   in_the_way: number,
+//   retail: number,
+//   small: number,
+//   archive: number,
+//   sticker_notes: string,
+//   manager_id: number,
+//   documents: string,
+//   provider_id: number,
+//   provider_engine_price: number
+// }
+
+export interface CarArchive {
+  archive: number
 }
 
 export interface CarItemUpdate {
   id: number,
-  updateData: updateCar
+  updateData: CarItem
 }
 
-export type CarData = CarItem | number
+export interface CarItemArchive {
+  id: number,
+  archiveData: CarArchive
+}
+
+export type CarData = CarItem | CarArchive | number
 
 export enum CarActionTypes {
   // eslint-disable-next-line no-unused-vars

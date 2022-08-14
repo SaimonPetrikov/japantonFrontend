@@ -94,3 +94,22 @@ export const carDelete = (data: CarData) => {
     }
   };
 };
+
+export const carArchive = (data: CarData) => {
+  return async (dispatch: Dispatch<CarActions>) => {
+    try {
+      dispatch({type: CarActionTypes.CAR_START});
+      const responseArchive = await CarService.archive(data);
+      console.log(responseArchive.data);
+      const responseAll = await CarService.all();
+      dispatch({type: CarActionTypes.CAR_DATA, payload: responseAll.data});
+      console.log(responseAll.data);
+      dispatch({type: CarActionTypes.CAR_FINISH});
+    } catch (e) {
+      dispatch({
+        type: CarActionTypes.CAR_ERROR,
+        payload: `Ошибка при архивации машины: ${e}`
+      });
+    }
+  };
+};

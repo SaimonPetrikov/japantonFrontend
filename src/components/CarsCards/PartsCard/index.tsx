@@ -1,12 +1,12 @@
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {useActions} from '../../hooks/useActions';
-import {RouteNames} from '../../routes/Routes/Routes.enum';
+import {useActions} from '../../../hooks/useActions';
+import {RouteNames} from '../../../routes/Routes/Routes.enum';
+import {DeleteStyled, WrapStyled } from '../CarsCards.styles';
 
-import {CardStyled} from './PartsCard.styles';
+import { CardStyled } from './PartsCard.styles';
 import {IPartsCardProps} from './PartsCard.typings';
 
 
@@ -23,14 +23,17 @@ const PartsCard: FC<IPartsCardProps> = ({parts}) => {
   const deleteHandler = () => partsDelete(parts.id);
 
   return (
-    <CardStyled onClick={showCarHandler}>
-      <p>{parts.id}</p>
-      <p>{parts.name_ru}</p>
-      <p>{parts.name_en}</p>
-      <p>{parts.sticker_fields}</p>
-      <ArchiveOutlinedIcon />
-      <DeleteOutlineIcon onClick={deleteHandler} />
-    </CardStyled>
+    <WrapStyled>
+      <CardStyled onClick={showCarHandler}>
+        <p>{parts.id}</p>
+        <p>{parts.name_ru}</p>
+        <p>{parts.name_en}</p>
+        <p>{parts.sticker_fields}</p>
+      </CardStyled>
+      <DeleteStyled>
+        <DeleteOutlineIcon onClick={deleteHandler} />
+      </DeleteStyled>
+    </WrapStyled>
   );
 };
 
