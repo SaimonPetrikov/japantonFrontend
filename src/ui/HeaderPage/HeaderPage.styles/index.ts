@@ -6,4 +6,5 @@ export const HeaderStyled = styled.p`
   line-height: 28px;
   color: #606060;
   margin-bottom: 25px;
+  width: 100%;
 `;
